@@ -61,7 +61,9 @@ bind '"\e[A": history-search-backward'
 # Down Arrow
 bind '"\e[B": history-search-forward'
 # Default prompt
-export PS1="\[\e[1;45;32m\]\$taskcount\[\e[1;35m\]\u \[\e[4;32m\]\w\[\e[0;40;35m\]\[\e[0m\] "
+# export PS1="\[\e[1;45;32m\]\$taskcount\[\e[1;35m\]\u \[\e[4;32m\]\w\[\e[0;40;35m\]\[\e[0m\] "
+# Alternative prompt, simpler.
+export PS1="\[\e[1;32m\]\$taskcount\[\e[1;35m\]\u \[\e[4;32m\]\w\[\e[0;35m\]\[\e[0m\] > "
 promptc(){
 	# Taskwarrior task count, to be used in PS1
 	taskcount=$(if [ `task status:pending count` != '0' ]; then echo -n "(`task status:pending count`) "; fi)
