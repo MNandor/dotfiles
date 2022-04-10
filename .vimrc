@@ -33,7 +33,7 @@ set smartcase
 :nnoremap <C-f> :%s/\<<C-r><C-w>\>//g<Left><left>
 
 " Toggle numbers
-:nnoremap <C-o> :set nu!<cr>:set rnu!<cr>
+:nnoremap <C-n> :set nu!<cr>:set rnu!<cr>
 
 " Run file
 " Note - %:p translates to full path - % translates to just file name
