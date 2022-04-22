@@ -22,7 +22,6 @@ alias clcd='cd ~ && clear'
 
 alias py="python3"
 alias pip="pip3"
-alias v="vim"
 alias xclip='xclip -sel clip'
 alias bc='calc'
 alias mnt='sudo mount /dev/sda1 /mnt'
@@ -41,12 +40,19 @@ alias shrug="echo '¯\_(ツ)_/¯' | xclip -sel clip && echo 'Shrug face on clipb
 #  | | (_| \__ \   < 
 #  |_|\__,_|___/_|\_\
 
-alias t="task"
 alias td="task add"
 alias tdb='td priority:L'
 alias tt='td pro:inbox'
 alias tw='timew'
 
+
+# One Letter
+
+alias t="task"
+alias v="vim"
+alias p="python3"
+alias g="git"
+alias r="ranger"
 
 
 #  ____  _          _ _ 
