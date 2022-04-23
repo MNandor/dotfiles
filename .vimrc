@@ -27,6 +27,9 @@ set smartcase
 :nnoremap <C-h> b
 :nnoremap <C-l> w
 
+" Jump to bookmark
+:nnoremap M `
+
 " Search for word at cursor
 :nnoremap <C-e> *
 " Replace word at cursor
@@ -38,6 +41,10 @@ set smartcase
 " Run file
 " Note - %:p translates to full path - % translates to just file name
 :nnoremap <S-r> :w<cr>:!clear;"%:p"<cr>
+
+" Open Terminal
+:nnoremap s :! 
+:nnoremap <S-s> :sh<CR>
 
 
 " Tab Indenting
