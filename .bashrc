@@ -29,8 +29,8 @@ alias mnt='sudo mount /dev/sda1 /mnt'
 
 
 # Copy these to clipboard
-alias lenny="echo '( ͡° ͜ʖ ͡°)' | xclip -sel clip && echo 'Lenny face on clipboard!'"
-alias shrug="echo '¯\_(ツ)_/¯' | xclip -sel clip && echo 'Shrug face on clipboard!'"
+alias lenny="echo -n '( ͡° ͜ʖ ͡°)' | xclip -sel clip && echo 'Lenny face on clipboard!'"
+alias shrug="echo -n '¯\_(ツ)_/¯' | xclip -sel clip && echo 'Shrug face on clipboard!'"
 
 
 
