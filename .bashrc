@@ -16,6 +16,7 @@ alias vbash='vim ~/.bashrc && source ~/.bashrc'
 
 
 alias ":q"="exit"
+alias ":q!"="exit"
 alias quit="exit"
 alias ".."="cd .."
 alias clcd='cd ~ && clear'
