@@ -15,6 +15,8 @@ set smartcase
 " Move line up/down
 :nnoremap <C-k> <Up>ddp<Up>
 :nnoremap <C-j> ddp
+:vnoremap <C-k> :m-2<CR>gv
+:vnoremap <C-j> :m'>+<CR>gv
 
 " Duplciate
 :nnoremap <C-d> yyp
@@ -26,7 +28,6 @@ set smartcase
 :nnoremap <S-h> 10h
 :nnoremap <C-h> b
 :nnoremap <C-l> w
-
 " Jump to bookmark
 :nnoremap M `
 
@@ -49,9 +50,9 @@ set smartcase
 
 " Tab Indenting
 :nnoremap <Tab> >>
-:vnoremap <Tab> >>
+:vnoremap <Tab> >gv
 :nnoremap <S-Tab> <<
-:vnoremap <S-Tab> <<
+:vnoremap <S-Tab> <gv
 
 " Backspace
 :nnoremap <BS> hx
