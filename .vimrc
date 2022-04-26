@@ -62,8 +62,6 @@ set completeopt=menuone,longest
 :inoremap <S-Tab> <C-p>
 :inoremap <expr> <CR> pumvisible() ? "<C-y>" : "<CR>"
 :inoremap <expr> <Tab> pumvisible() ? "<C-n>" : "<Tab>"
-" Complete HTML tag under cursor
-:inoremap <C-u> <Esc>diwi<Right><<Esc>pi<Right>></<Esc>pi<Right>><Esc>F/hi
 :inoremap <C-b> <Esc>[sz=
 :noremap <C-b> [sz=
 
@@ -72,3 +70,7 @@ set completeopt=menuone,longest
 " C-a / C-x increments/decrements number under cursor
 " :set spell!
 " :set spell spelllang=en_us
+" see .vim folder for file types & syntax
+
+" Complete HTML tag under cursor
+autocmd FileType html inoremap ?? <Esc>yiw:s/<C-R>"/<&>@<\/&><Cr>f@xi
