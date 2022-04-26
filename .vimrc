@@ -20,6 +20,8 @@ set smartcase
 
 " Duplciate
 :nnoremap <C-d> yyp
+" Paste at caret, not after
+:nnoremap p P
 
 " Improved navigation
 :nnoremap <S-k> 10k
@@ -73,4 +75,5 @@ set completeopt=menuone,longest
 " see .vim folder for file types & syntax
 
 " Complete HTML tag under cursor
-autocmd FileType html inoremap ?? <Esc>yiw:s/<C-R>"/<&>@<\/&><Cr>f@xi
+autocmd FileType html inoremap ?? <Esc>bi__<Esc>yiw:s/<C-R>"/<&>@@<\/&><Cr>:s/__//g<Cr>/@@<Cr>xxi
+ab lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
