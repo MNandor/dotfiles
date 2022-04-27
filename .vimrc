@@ -73,7 +73,12 @@ set completeopt=menuone,longest
 " :set spell!
 " :set spell spelllang=en_us
 " see .vim folder for file types & syntax
+" Find filetype using :set filetype?
 
 " Complete HTML tag under cursor
 autocmd FileType html inoremap ?? <Esc>bi__<Esc>yiw:s/<C-R>"/<&>@@<\/&><Cr>:s/__//g<Cr>/@@<Cr>xxi
 ab lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+autocmd FileType python set nu | set rnu
+autocmd FileType vim set nu | set rnu
+autocmd FileType sh set nu | set rnu
