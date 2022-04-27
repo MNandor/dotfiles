@@ -77,6 +77,7 @@ set completeopt=menuone,longest
 
 " Complete HTML tag under cursor
 autocmd FileType html inoremap ?? <Esc>bi__<Esc>yiw:s/<C-R>"/<&>@@<\/&><Cr>:s/__//g<Cr>/@@<Cr>xxi
+autocmd FileType tex inoremap ?? <Esc>bi__<Esc>yiw:s/<C-R>"/\\begin{&}\r@@\r\\end{&}<Cr>:.-2,.s/__//g<Cr>/@@<Cr>xxi
 ab lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 autocmd FileType python set nu | set rnu
