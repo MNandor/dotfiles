@@ -81,6 +81,10 @@ autocmd FileType sh set nu | set rnu
 
 " set scrolloff=5
 
+" Auto add shebangs to new file
+autocmd BufNewFile *.py norm O#!/bin/python3
+autocmd BufNewFile *.sh norm O#!/bin/bash
+
 "     _         _                                  _      _       
 "    / \  _   _| |_ ___   ___ ___  _ __ ___  _ __ | | ___| |_ ___ 
 "   / _ \| | | | __/ _ \ / __/ _ \| '_ ` _ \| '_ \| |/ _ \ __/ _ \
