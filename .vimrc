@@ -79,11 +79,14 @@ autocmd FileType sh set nu | set rnu
 :nnoremap X "xd
 :nnoremap XX "xdd
 
-" set scrolloff=5
+set scrolloff=5
 
 " Auto add shebangs to new file
 autocmd BufNewFile *.py norm O#!/bin/python3
 autocmd BufNewFile *.sh norm O#!/bin/bash
+
+" Show whitespace on :set list
+:set listchars+=tab:-->,space:_,multispace:___-,extends:~
 
 "     _         _                                  _      _       
 "    / \  _   _| |_ ___   ___ ___  _ __ ___  _ __ | | ___| |_ ___ 
