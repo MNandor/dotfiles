@@ -79,7 +79,12 @@ autocmd FileType sh set nu | set rnu
 :nnoremap X "xd
 :nnoremap XX "xdd
 
+" Prevent current line from being at the very top/bottom of screen
+" Fun idea: set to 999 for typewriter mode
 set scrolloff=5
+
+" To go with ZZ and ZQ shortcuts
+:nnoremap ZS :w<Cr>
 
 " Auto add shebangs to new file
 autocmd BufNewFile *.py norm O#!/bin/python3
