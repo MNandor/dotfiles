@@ -138,3 +138,5 @@ autocmd FileType markdown ab cb - [ ]
 
 " Run latex
 autocmd FileType tex nnoremap <S-r> :w<Cr>:!pdflatex "%"<Cr>
+
+source ~/.vim/mnvim/*
