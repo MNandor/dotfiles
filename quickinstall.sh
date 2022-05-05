@@ -1,11 +1,11 @@
 #!/bin/bash
 
 cat .bashrc > ~/.nbashrc
-cat .vimrc > ~/.nvimrc
+cat .vimrc > ~/.mnvimrc
 if [[ -z $(grep "nbashrc" ~/.bashrc) ]]; then
 	echo "source ~/.nbashrc" >> ~/.bashrc
 fi
-if [[ -z $(grep "nvimrc" ~/.vimrc) ]]; then
-	echo "so ~/.nvimrc" >> ~/.vimrc
+if [[ -z $(grep "mnvimrc" ~/.vimrc) ]]; then
+	echo "so ~/.mnvimrc" >> ~/.vimrc
 fi
 source ~/.bashrc
