@@ -76,8 +76,8 @@ autocmd FileType vim set nu | set rnu
 autocmd FileType sh set nu | set rnu
 
 " Delete without overwriting clipboard
-:nnoremap X "xd
-:nnoremap XX "xdd
+:nnoremap X "_d
+:nnoremap XX "_dd
 
 " Prevent current line from being at the very top/bottom of screen
 " Fun idea: set to 999 for typewriter mode
@@ -117,7 +117,7 @@ autocmd FileType html inoremap ?? <Esc>bi__<Esc>yiw:s/<C-R>"/<&>@@<\/&><Cr>:s/__
 autocmd FileType tex inoremap ?? <Esc>bi__<Esc>yiw:s/<C-R>"/\\begin{&}\r@@\r\\end{&}<Cr>:.-2,.s/__//g<Cr>/@@<Cr>xxi
 
 " Change next marker
-:nnoremap <Space><Space> /<@@><Cr>c4l
+:nnoremap <Space><Space> /<@@><Cr>"_c4l
 
 " Abbreviations
 ab lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
