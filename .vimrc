@@ -34,6 +34,8 @@ set smartcase
 :nnoremap <S-h> 10h
 :nnoremap <C-h> b
 :nnoremap <C-l> w
+:inoremap <C-a> <C-o>0
+:inoremap <C-e> <C-o>$
 
 " Move line up/down
 :nnoremap <C-k> <Up>ddp<Up>
