@@ -38,5 +38,11 @@ function ShowCode()
 	autocmd TextChanged,TextChangedI * call UpdateMarkdownCode()
 endfunction
 
+function GetMarkdownCode()
+	redir @+>
+	call ShowMarkdownCode()
+	redir END
+endfunction
+
 
 " autocmd FileType markdown ++once call ShowCode()
