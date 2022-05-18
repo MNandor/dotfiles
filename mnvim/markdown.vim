@@ -1,5 +1,5 @@
 
-function ShowMarkdownCode()
+function ShowMarkdownCode(includeInline = 0)
 	"Whether we are inside a ``` block
 	let codeblock=0 
 	for linen in range(1, line('$'))
@@ -9,7 +9,7 @@ function ShowMarkdownCode()
 			let codeblock = !codeblock
 		elseif codeblock
 			echo line
-		else
+		elseif a:includeInline
 			" Outside codeblocks, handle `inline` code content
 			let parts = split(" ".line." ", '`')
 			call filter(parts, {key, value -> key %2 == 1})
@@ -33,7 +33,7 @@ function UpdateMarkdownCode()
 
 endfunction
 
-function ShowCode()
+function SplitMarkdownCode()
 	:vnew
 	autocmd TextChanged,TextChangedI * call UpdateMarkdownCode()
 endfunction
@@ -45,4 +45,4 @@ function GetMarkdownCode()
 endfunction
 
 
-" autocmd FileType markdown ++once call ShowCode()
+" autocmd FileType markdown ++once call SplitMarkdownCode()
