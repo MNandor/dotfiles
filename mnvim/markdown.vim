@@ -43,8 +43,9 @@ endfunction
 
 function GetMarkdownCode()
 	redir @+>
-	call ShowMarkdownCode()
+	silent call ShowMarkdownCode()
 	redir END
+	echo "Markdown code on clipboard!"
 endfunction
 
 
