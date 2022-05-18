@@ -15,6 +15,8 @@ set hlsearch
 set clipboard=unnamedplus
 set ignorecase
 set smartcase
+set splitbelow
+set splitright
 " set colorcolumn=81
 
 
@@ -146,4 +148,4 @@ autocmd FileType markdown ab cb - [ ]
 autocmd FileType tex nnoremap <S-r> :w<Cr>:!pdflatex "%"<Cr>
 autocmd FileType html nnoremap <S-r> :w<Cr>:silent !firefox % &<Cr>
 
-source ~/.vim/mnvim/*
+source ~/.vim/mnvim/markdown.vim
