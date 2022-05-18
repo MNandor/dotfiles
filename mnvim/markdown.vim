@@ -7,6 +7,9 @@ function ShowMarkdownCode(includeInline = 0)
 		" Regex check if line starts with ```
 		if trim(line) =~ '^```.*$'
 			let codeblock = !codeblock
+			if codeblock == 0
+				echo "\n"
+			endif
 		elseif codeblock
 			echo line
 		elseif a:includeInline
