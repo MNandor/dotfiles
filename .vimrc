@@ -144,5 +144,6 @@ autocmd FileType markdown ab cb - [ ]
 
 " Run latex
 autocmd FileType tex nnoremap <S-r> :w<Cr>:!pdflatex "%"<Cr>
+autocmd FileType html nnoremap <S-r> :w<Cr>:silent !firefox % &<Cr>
 
 source ~/.vim/mnvim/*
