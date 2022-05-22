@@ -7,7 +7,8 @@
 set noexpandtab
 set tabstop=4
 set shiftwidth=4
-set smartindent
+" set autoindent
+filetype indent on
 syntax on
 set mouse=a
 set incsearch
@@ -115,7 +116,7 @@ set completeopt=menuone,longest
 :inoremap <expr> <Tab> pumvisible() ? "<C-n>" : "<Tab>"
 
 " Spellcheck
-:inoremap <C-b> <Esc>[sz=
+:inoremap <C-b> <C-x>s
 :noremap <C-b> [sz=
 
 " Complete HTML tag under cursor
