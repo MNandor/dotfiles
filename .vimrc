@@ -18,6 +18,7 @@ set ignorecase
 set smartcase
 set splitbelow
 set splitright
+set linebreak
 " set colorcolumn=81
 
 
@@ -130,6 +131,7 @@ autocmd FileType tex inoremap ?? <Esc>bi__<Esc>yiw:s/<C-R>"/\\begin{&}\r@@\r\\en
 
 " Abbreviations
 ab lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+ab bfox The quick, brown fox jumps over the lazy dog.
 autocmd FileType markdown ab cb - [ ]
 
 "  _____                     _       
