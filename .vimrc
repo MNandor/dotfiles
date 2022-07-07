@@ -82,6 +82,8 @@ set breakindent
 
 " Backspace
 :nnoremap <BS> hx
+" Remap a to insert a single character
+nnoremap a i_<Esc>r
 
 " Line numbers in programming languages
 autocmd FileType python set nu | set rnu
@@ -98,6 +100,9 @@ set scrolloff=5
 
 " To go with ZZ and ZQ shortcuts
 :nnoremap ZS :w<Cr>
+
+" Shift-R is overridden, use gR for original
+:nnoremap gR R
 
 " Auto add shebangs to new file
 autocmd BufNewFile *.py norm O#!/bin/python3
@@ -118,6 +123,7 @@ set completeopt=menuone,longest
 :inoremap <S-Tab> <C-p>
 :inoremap <expr> <CR> pumvisible() ? "<C-y>" : "<CR>"
 :inoremap <expr> <Tab> pumvisible() ? "<C-n>" : "<Tab>"
+:inoremap <C-f> <C-x><C-f>
 
 " Spellcheck
 :inoremap <C-b> <C-x>s
