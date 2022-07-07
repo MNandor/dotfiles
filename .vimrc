@@ -19,6 +19,7 @@ set smartcase
 set splitbelow
 set splitright
 set linebreak
+set breakindent
 " set colorcolumn=81
 
 
@@ -42,14 +43,16 @@ set linebreak
 :inoremap <C-e> <C-o>$
 :inoremap <C-h> <Left>
 :inoremap <C-l> <Right>
-:inoremap <C-k> <Up>
-:inoremap <C-j> <Down>
+" :inoremap <C-k> <Up>
+" :inoremap <C-j> <Down>
 
 " Move line up/down
 :nnoremap <C-k> <Up>ddp<Up>
 :nnoremap <C-j> ddp
 :vnoremap <C-k> :m-2<CR>gv
 :vnoremap <C-j> :m'>+<CR>gv
+:nnoremap <C-l> diwwPldebhPlw
+:nnoremap <C-h> diwgebPldepbhb
 
 " Jump to bookmark
 :nnoremap M `
