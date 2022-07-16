@@ -139,7 +139,7 @@ autocmd FileType python set listchars=tab:\|\ \
 " Autocomplete
 set completeopt=menuone,longest
 :inoremap <S-Tab> <C-p>
-:inoremap <expr> <CR> pumvisible() ? "<C-y>" : "<CR>"
+:inoremap <expr> <CR> pumvisible() ? "<Space>" : "<CR>"
 :inoremap <expr> <Tab> pumvisible() ? "<C-n>" : "<Tab>"
 :inoremap <C-f> <C-x><C-f>
 
