@@ -57,6 +57,8 @@ set breakindent
 " Jump to bookmark
 :nnoremap M `
 
+:nnoremap gw <C-w>w
+
 "  _____    _ _ _   _             
 " | ____|__| (_) |_(_)_ __   __ _ 
 " |  _| / _` | | __| | '_ \ / _` |
