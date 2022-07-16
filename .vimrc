@@ -115,10 +115,14 @@ autocmd BufNewFile *.sh norm O#!/bin/bash
 " Note: the normal mode uses Visual mode too
 " Todo: this break with the second use, because [count]V doesn't select [count] lines but rather [count]*gv lines
 " This is to handle cases with and without a line count
-autocmd FileType python nnoremap <C-_> <S-v>:g/^\s*[^ \t#].*$/s/^.*$/## &/<Cr>gv:s/^\(\s*\)# \?\(.*\)$/\1\2/<Cr>:noh<Cr>
-autocmd FileType python vnoremap <C-_> :g/^\s*[^ \t#].*$/s/^.*$/## &/<Cr>gv:s/^\(\s*\)# \?\(.*\)$/\1\2/<Cr>:noh<Cr>gv
+autocmd FileType python,sh nnoremap <C-_> <S-v>:g/^\s*[^ \t#].*$/s/^.*$/## &/<Cr>gv:s/^\(\s*\)# \?\(.*\)$/\1\2/<Cr>:noh<Cr>
+autocmd FileType python,sh vnoremap <C-_> :g/^\s*[^ \t#].*$/s/^.*$/## &/<Cr>gv:s/^\(\s*\)# \?\(.*\)$/\1\2/<Cr>:noh<Cr>gv
 autocmd FileType tex nnoremap <C-_> <S-v>:g/^\s*[^ \t%].*$/s/^.*$/%% &/<Cr>gv:s/^\(\s*\)% \?\(.*\)$/\1\2/<Cr>:noh<Cr>
 autocmd FileType tex vnoremap <C-_> :g/^\s*[^ \t%].*$/s/^.*$/%% &/<Cr>gv:s/^\(\s*\)% \?\(.*\)$/\1\2/<Cr>:noh<Cr>gv
+autocmd FileType vim nnoremap <C-_> <S-v>:g/^\s*[^ \t"].*$/s/^.*$/"" &/<Cr>gv:s/^\(\s*\)" \?\(.*\)$/\1\2/<Cr>:noh<Cr>
+autocmd FileType vim vnoremap <C-_> :g/^\s*[^ \t"].*$/s/^.*$/"" &/<Cr>gv:s/^\(\s*\)" \?\(.*\)$/\1\2/<Cr>:noh<Cr>gv
+autocmd FileType java,c,cpp nnoremap <C-_> <S-v>:g#^\s*[^ \t\/\/].*$#s#^.*$#\/\/\/\/ &#<Cr>gv:s#^\(\s*\)\/\/ \?\(.*\)$#\1\2#<Cr>:noh<Cr>
+autocmd FileType java,c,cpp vnoremap <C-_> :g#^\s*[^ \t\/\/].*$#s#^.*$#\/\/\/\/ &#<Cr>gv:s#^\(\s*\)\/\/ \?\(.*\)$#\1\2#<Cr>:noh<Cr>gv
 autocmd FileType html nnoremap <C-_> <S-v>:g/^<!--\(.*\)-->$/s/^<!--\(.*\)-->$/\1#<Cr>gv:g/^\(.*[^#]\)$/s/^\(.*[^#]\)$/<!--\1-->#<Cr>gv:g/^\(.*\)#$/s/^\(.*\)#$/\1<Cr>:noh<Cr>
 autocmd FileType html vnoremap <C-_> :g/^<!--\(.*\)-->$/s/^<!--\(.*\)-->$/\1#<Cr>gv:g/^\(.*[^#]\)$/s/^\(.*[^#]\)$/<!--\1-->#<Cr>gv:g/^\(.*\)#$/s/^\(.*\)#$/\1<Cr>:noh<Cr>gv
 autocmd FileType python set list
