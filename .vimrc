@@ -127,8 +127,8 @@ autocmd FileType java,c,cpp nnoremap <C-_> <S-v>:g#^\s*[^ \t\/\/].*$#s#^.*$#\/\/
 autocmd FileType java,c,cpp vnoremap <C-_> :g#^\s*[^ \t\/\/].*$#s#^.*$#\/\/\/\/ &#<Cr>gv:s#^\(\s*\)\/\/ \?\(.*\)$#\1\2#<Cr>:noh<Cr>gv
 autocmd FileType html nnoremap <C-_> <S-v>:g/^<!--\(.*\)-->$/s/^<!--\(.*\)-->$/\1#<Cr>gv:g/^\(.*[^#]\)$/s/^\(.*[^#]\)$/<!--\1-->#<Cr>gv:g/^\(.*\)#$/s/^\(.*\)#$/\1<Cr>:noh<Cr>
 autocmd FileType html vnoremap <C-_> :g/^<!--\(.*\)-->$/s/^<!--\(.*\)-->$/\1#<Cr>gv:g/^\(.*[^#]\)$/s/^\(.*[^#]\)$/<!--\1-->#<Cr>gv:g/^\(.*\)#$/s/^\(.*\)#$/\1<Cr>:noh<Cr>gv
-autocmd FileType python set list
-autocmd FileType python set listchars=tab:\|\ \ 
+autocmd FileType python,sh set list
+autocmd FileType python,sh set listchars=tab:\|\ \ 
 "     _         _                                  _      _       
 "    / \  _   _| |_ ___   ___ ___  _ __ ___  _ __ | | ___| |_ ___ 
 "   / _ \| | | | __/ _ \ / __/ _ \| '_ ` _ \| '_ \| |/ _ \ __/ _ \
