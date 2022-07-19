@@ -156,6 +156,12 @@ autocmd FileType tex nnoremap <S-r> :w<Cr>:!pdflatex "%"<Cr>
 autocmd FileType html nnoremap <S-r> :w<Cr>:silent !firefox % &<Cr>
 autocmd FileType c nnoremap <S-r> :w<Cr>:!gcc % && ./a.out<Cr>
 
+" Execute arbitrary vim commands in file
+" Obviously this is dangerous - only use on your own files
+function LoadVim()
+	exec('g/^[^ ]*vim \(.*\)$/norm ^f ly$:"')
+endfunction
+
 source ~/.vim/mnvim/markdown.vim
 
 
