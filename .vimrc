@@ -70,6 +70,8 @@ set breakindent
 
 " Duplciate
 :nnoremap <C-d> yyp
+" Select all
+:nnoremap <C-a> gg<S-v>G
 " Search for word at cursor
 :nnoremap <C-e> *
 " Replace word at cursor
