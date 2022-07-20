@@ -1,13 +1,56 @@
+#  ____            _              
+# | __ )  __ _ ___| |__  _ __ ___ 
+# |  _ \ / _` / __| '_ \| '__/ __|
+# | |_) | (_| \__ \ | | | | | (__ 
+# |____/ \__,_|___/_| |_|_|  \___|
+
+HISTSIZE=HISTFILESIZE
+export GTK_IM_MODULE=ibus
+export XMODIFIERS=@im=ibus
+export QT_IM_MODULE=ibus
+export EDITOR="vim"
+export HISTCONTROL=ignoreboth
+
+
+# If not running interactively, don't do anything
+[[ $- != *i* ]] && return
+
+# For convenience, list of single-letter shorcuts
+# g = git
+# j = autojump
+# r = ranger
+# t = task
+# v = vim
+# w = (show logged in users, not an alias)
+# x = xdg-open
+
+# Autojump
+[[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
+
+
+
+#  ____            _      
+# | __ )  __ _ ___(_) ___ 
+# |  _ \ / _` / __| |/ __|
+# | |_) | (_| \__ \ | (__ 
+# |____/ \__,_|___/_|\___|
+
+# Shadow common commands
 alias grep="grep -i --color=auto"
 alias ls='ls --color=auto -lh --group-directories-first'
 alias diff="diff --color"
-
+alias powertop='sudo powertop'
 alias shutdown='shutdown now'
 alias rm='rm -i'
+alias find='find . -name'
+alias dmenu='dmenu -nb "#000000" -nf "#FF0000" -sf "#000000" -sb "#FF0000" -i -l 5'
 alias syu='sudo pacman -Syu'
+alias xclip='xclip -sel clip'
+
+# True aliases
+alias uniq='sort -u'
 alias pid="ps -aux | grep"
 alias howmuchspaceisonmydrives='df -h'
-alias dmenu='dmenu -nb "#000000" -nf "#FF0000" -sf "#000000" -sb "#FF0000" -i -l 5'
 
 alias lgrep='ls | grep'
 alias hgrep="history | grep"
