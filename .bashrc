@@ -28,6 +28,11 @@ alias x="xdg-open"
 # Autojump
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
 
+# Exits
+alias ":q"="exit"
+alias ":q!"="exit"
+alias "ZQ"="exit"
+alias quit="exit"
 
 
 #  ____            _      
@@ -53,15 +58,16 @@ alias uniq='sort -u'
 alias pid="ps -aux | grep"
 alias howmuchspaceisonmydrives='df -h'
 
+# Grep
 alias lgrep='ls | grep'
 alias hgrep="history | grep"
 alias bgrep='cat ~/.bashrc | grep'
+
+# Edit Common Files
 alias vbash='vim ~/.bashrc && source ~/.bashrc'
+alias vvimrc='vim ~/.vimrc'
 
 
-alias ":q"="exit"
-alias ":q!"="exit"
-alias quit="exit"
 alias ".."="cd .."
 alias clcd='cd ~ && clear'
 
@@ -121,4 +127,4 @@ promptc(){
 		echo -e "\e[1;33m$gitname\e[0m / \e[1;34m$username\e[0m[\e[1;34m$usermail\e[0m]\e[0m / $commitcount \e[1;32m✓\e[0m $changecount \e[1;33m✗\e[0m"
 	fi
 }
-PROMPT_COMMAND="promptc" 
+PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} promptc" 
