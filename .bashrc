@@ -15,14 +15,15 @@ export HISTCONTROL=ignoreboth
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
-# For convenience, list of single-letter shorcuts
-# g = git
+# Single-letter shortcuts
+alias g="git"
 # j = autojump
-# r = ranger
-# t = task
-# v = vim
+alias p="python3"
+alias r="ranger"
+alias t="task"
+alias v="vim"
 # w = (show logged in users, not an alias)
-# x = xdg-open
+alias x="xdg-open"
 
 # Autojump
 [[ -s /etc/profile.d/autojump.sh ]] && source /etc/profile.d/autojump.sh
@@ -90,13 +91,6 @@ alias tt='td pro:inbox'
 alias tw='timew'
 
 
-# One Letter
-
-alias t="task"
-alias v="vim"
-alias p="python3"
-alias g="git"
-alias r="ranger"
 
 
 #  ____  _          _ _ 
