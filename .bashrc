@@ -73,6 +73,7 @@ alias bctl="bluetoothctl"
 alias locate='locate -i'
 alias nonet='firejail --net=none'
 alias mnt='sudo mount /dev/sda1 /mnt'
+alias umnt='sudo umount /mnt'
 
 # Grep
 alias lgrep='ls | grep'
@@ -146,15 +147,21 @@ alias gl="git log --oneline"
 alias gla="gl --graph --all"
 
 
-# _____         _    
-# |_   _|_ _ ___| | __
-#  | |/ _` / __| |/ /
-#  | | (_| \__ \   < 
-#  |_|\__,_|___/_|\_\
+#  _____         _                             _            
+# |_   _|_ _ ___| | ____      ____ _ _ __ _ __(_) ___  _ __ 
+#   | |/ _` / __| |/ /\ \ /\ / / _` | '__| '__| |/ _ \| '__|
+#   | | (_| \__ \   <  \ V  V / (_| | |  | |  | | (_) | |   
+#   |_|\__,_|___/_|\_\  \_/\_/ \__,_|_|  |_|  |_|\___/|_|   
 
 alias td="task add"
 alias tdb='td priority:L'
+alias tp='td pro:$(t _unique project | dmenu)'
+alias tbp='tdb pro:$(t _unique project | dmenu)'
+alias tpb='tdb pro:$(t _unique project | dmenu)'
 alias tt='td pro:inbox'
+alias tmr='task modify wait:tomorrow'
+alias tasknocontext='task rc.context:none'
+alias backlog="task rc.context=backlog rc.report.next.sort=project limit: "
 alias tw='timew'
 
 
