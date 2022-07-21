@@ -54,9 +54,24 @@ alias syu='sudo pacman -Syu'
 alias xclip='xclip -sel clip'
 
 # True aliases
+alias ..='cd ..'
+alias py="python3"
+alias python="python3"
+alias pip="pip3"
+alias markdown='markdown_py'
+alias bc='calc'
 alias uniq='sort -u'
+alias table='column'
+alias spacesniff="pwd | du -hd 1 | sort -h"
 alias pid="ps -aux | grep"
+alias clcd='cd ~ && clear'
+alias zipthisfolder='zip -r zipname *'
 alias howmuchspaceisonmydrives='df -h'
+alias vanenet='ping example.com'
+alias weather='curl wttr.in'
+alias bctl="bluetoothctl"
+alias locate='locate -i'
+alias nonet='firejail --net=none'
 
 # Grep
 alias lgrep='ls | grep'
@@ -68,13 +83,7 @@ alias vbash='vim ~/.bashrc && source ~/.bashrc'
 alias vvimrc='vim ~/.vimrc'
 
 
-alias ".."="cd .."
-alias clcd='cd ~ && clear'
 
-alias py="python3"
-alias pip="pip3"
-alias xclip='xclip -sel clip'
-alias bc='calc'
 alias mnt='sudo mount /dev/sda1 /mnt'
 
 
@@ -83,6 +92,26 @@ alias mnt='sudo mount /dev/sda1 /mnt'
 alias lenny="echo -n '( ͡° ͜ʖ ͡°)' | xclip -sel clip && echo 'Lenny face on clipboard!'"
 alias shrug="echo -n '¯\_(ツ)_/¯' | xclip -sel clip && echo 'Shrug face on clipboard!'"
 
+# Ranger (cd to exit position)
+ranger_cd() {
+	# Copied from: /usr/share/doc/ranger/examples/shell_automatic_cd.sh
+	temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
+	ranger --choosedir="$temp_file" -- "${@:-$PWD}"
+	if chosen_dir="$(cat -- "$temp_file")" && [ -n "$chosen_dir" ] && [ "$chosen_dir" != "$PWD" ]; then
+		cd -- "$chosen_dir"
+	fi
+	rm -f -- "$temp_file"
+}
+alias ranger="ranger_cd"
+
+# Git
+alias ga="git add ."
+alias gc="git commit -m"
+alias gac="git add . && git commit -m"
+alias gs="git status"
+alias gd="git diff"
+alias gl="git log --oneline"
+alias gla="gl --graph --all"
 
 
 # _____         _    
