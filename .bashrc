@@ -72,6 +72,7 @@ alias weather='curl wttr.in'
 alias bctl="bluetoothctl"
 alias locate='locate -i'
 alias nonet='firejail --net=none'
+alias mnt='sudo mount /dev/sda1 /mnt'
 
 # Grep
 alias lgrep='ls | grep'
@@ -83,8 +84,39 @@ alias vbash='vim ~/.bashrc && source ~/.bashrc'
 alias vvimrc='vim ~/.vimrc'
 
 
+#  ____                           
+# / ___|  ___ _ __ ___  ___ _ __  
+# \___ \ / __| '__/ _ \/ _ \ '_ \ 
+#  ___) | (__| | |  __/  __/ | | |
+# |____/ \___|_|  \___|\___|_| |_|
+                                
+# Xrandr
+secondMonitorName(){
+	xrandr | grep HDMI | sed -e '/HDMI/!d' -e 's/\([^ ]\) .*/\1/'
+}
+mainMonitorName(){
+	xrandr | grep eDP | sed -e '/eDP/!d' -e 's/\([^ ]\) .*/\1/'
+}
+xrotate(){
+	echo -e "normal\nright\nleft" | dmenu |
+	xargs xrandr --output $(secondMonitorName) --rotate
+}
+xposition(){
+	xrandr --auto
+	xrandr --auto --output $(secondMonitorName)  --$(echo -e "left\nright" | dmenu)-of $(mainMonitorName)
+}
+alias brightness='xrandr --output eDP-1 --brightness' # note: brightnessctl
+alias redshift='echo -e "3000\n7000" | dmenu | xargs redshift -P -O'
 
-alias mnt='sudo mount /dev/sda1 /mnt'
+# Switch GPU
+gamermode(){
+	if [ $1 == on ]; then
+		optimus-manager --switch nvidia
+	elif [ $1 == off ]; then
+		optimus-manager --switch integrated
+	fi
+}
+
 
 
 
