@@ -143,6 +143,8 @@ alias gc="git commit -m"
 alias gac="git add . && git commit -m"
 alias gs="git status"
 alias gd="git diff"
+alias gdc="git diff --cached"
+alias amend="git commit --amend"
 alias gl="git log --oneline"
 alias gla="gl --graph --all"
 
