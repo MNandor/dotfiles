@@ -145,6 +145,7 @@ alias gs="git status"
 alias gd="git diff"
 alias gdc="git diff --cached"
 alias amend="git commit --amend"
+alias blame="git blame --date=short --color-lines -w"
 alias gl="git log --oneline"
 alias gla="gl --graph --all"
 

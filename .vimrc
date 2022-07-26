@@ -147,8 +147,8 @@ autocmd FileType markdown ab cb - [ ]
 " |_____/_/\_\___|\___|\__,_|\__\___|
                                    
 " Open Terminal
-:nnoremap s :! 
-:nnoremap <S-s> :sh<CR>
+:noremap s :! 
+:noremap <S-s> :sh<CR>
 
 " Run file
 :nnoremap <S-r> :w<cr>:!clear;"%:p"<cr>
@@ -180,6 +180,9 @@ autocmd FileType python,vim,sh set nu | set rnu
 " Auto add shebangs to new file
 autocmd BufNewFile *.py norm O#!/bin/python3
 autocmd BufNewFile *.sh norm O#!/bin/bash
+
+" Joplin sometimes doesn't detect vim saves - update manually
+autocmd BufWritePost *.md silent :execute "!touch %"
 
 " Toggle comments
 " Note: the normal mode uses Visual mode too
