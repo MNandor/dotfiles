@@ -70,8 +70,6 @@ set breakindent
 
 " Duplciate
 :nnoremap <C-d> yyp
-" Select all
-:nnoremap <C-a> gg<S-v>G
 " Search for word at cursor
 :nnoremap <C-e> *
 " Replace word at cursor
@@ -152,6 +150,7 @@ autocmd FileType markdown ab cb - [ ]
 
 " Run file
 :nnoremap <S-r> :w<cr>:!clear;"%:p"<cr>
+:vmap <S-r> <Esc><S-r>
 
 " Run latex
 autocmd FileType tex nnoremap <S-r> :w<Cr>:!pdflatex "%"<Cr>
@@ -163,6 +162,8 @@ autocmd FileType c nnoremap <S-r> :w<Cr>:!gcc % && ./a.out<Cr>
 function LoadVim()
 	exec('g/^[^ ]*vim \(.*\)$/norm ^f ly$:"')
 endfunction
+
+autocmd FileType cpp nnoremap <S-r> :w<Cr>:!g++ $(ls %:h/*.cpp) && ./a.out<Cr>
 
 source ~/.vim/mnvim/markdown.vim
 
