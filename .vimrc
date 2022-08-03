@@ -152,10 +152,15 @@ autocmd FileType markdown ab cb - [ ]
 :nnoremap <S-r> :w<cr>:!clear;"%:p"<cr>
 :vmap <S-r> <Esc><S-r>
 
-" Run latex
+" Run script (works with bash and python)
+:noremap <S-s> :sh<CR>
+
+" Run other languages
 autocmd FileType tex nnoremap <S-r> :w<Cr>:!pdflatex "%"<Cr>
 autocmd FileType html nnoremap <S-r> :w<Cr>:silent !firefox % &<Cr>
 autocmd FileType c nnoremap <S-r> :w<Cr>:!gcc % && ./a.out<Cr>
+autocmd FileType cpp nnoremap <S-r> :w<Cr>:!g++ $(ls %:h/*.cpp) && ./a.out<Cr>
+autocmd FileType c nnoremap <S-r> :w<Cr>:!gcc $(ls %:h/*.c) && ./a.out<Cr>
 
 " Execute arbitrary vim commands in file
 " Obviously this is dangerous - only use on your own files
@@ -163,7 +168,6 @@ function LoadVim()
 	exec('g/^[^ ]*vim \(.*\)$/norm ^f ly$:"')
 endfunction
 
-autocmd FileType cpp nnoremap <S-r> :w<Cr>:!g++ $(ls %:h/*.cpp) && ./a.out<Cr>
 
 source ~/.vim/mnvim/markdown.vim
 
