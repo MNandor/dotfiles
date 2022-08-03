@@ -104,7 +104,7 @@ set scrolloff=5
 :nnoremap gR R
 
 " Show whitespace on :set list
-:set listchars+=tab:-->,space:_,multispace:___-,extends:~
+:set listchars+=tab:-->,space:␣,multispace:___-,extends:~
 
 "     _         _                                  _      _       
 "    / \  _   _| |_ ___   ___ ___  _ __ ___  _ __ | | ___| |_ ___ 
