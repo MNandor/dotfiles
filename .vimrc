@@ -76,7 +76,20 @@ set breakindent
 :nnoremap <C-f> :%s/\<<C-r><C-w>\>//gc<Left><Left><left>
 
 " Toggle numbers
-:nnoremap <C-n> :set nu!<cr>:set rnu!<cr>
+function CycleNumbers()
+	" Cycle between: no number, both, absolute-only
+	if ((&nu == 0) && (&rnu == 0))
+		set nu
+		set rnu
+	elseif ((&nu == 1) && (&rnu == 1))
+		set rnu!
+	elseif ((&nu == 1) && (&rnu == 0))
+		set nu!
+	else
+		set rnu!
+	endif
+endfunction
+:nnoremap <C-n> :call CycleNumbers()<Cr>
 
 " Tab Indenting
 :nnoremap <Tab> >>
