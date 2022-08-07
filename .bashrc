@@ -16,6 +16,7 @@ export HISTCONTROL=ignoreboth
 [[ $- != *i* ]] && return
 
 # Single-letter shortcuts
+alias b=tbp
 alias g="git"
 # j = autojump
 alias p="python3"
@@ -142,7 +143,7 @@ alias ga="git add ."
 alias gc="git commit -m"
 alias gac="git add . && git commit -m"
 alias gs="git status"
-alias gd="git diff"
+alias gd="git --no-pager diff"
 alias gdc="git diff --cached"
 alias amend="git commit --amend"
 alias blame="git blame --date=short --color-lines -w"
@@ -164,7 +165,7 @@ alias tpb='tdb pro:$(t _unique project | dmenu)'
 alias tt='td pro:inbox'
 alias tmr='task modify wait:tomorrow'
 alias tasknocontext='task rc.context:none'
-alias backlog="task rc.context=backlog rc.report.next.sort=project limit: "
+alias backlog="task rc.context=backlog limit: "
 alias tw='timew'
 
 
