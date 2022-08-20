@@ -98,7 +98,8 @@ endfunction
 :vnoremap <S-Tab> <gv
 
 " Backspace
-:nnoremap <BS> hx
+:nnoremap x "_x
+:nmap <BS> hx
 " Remap a to insert a single character
 nnoremap a i_<Esc>r
 
