@@ -146,10 +146,16 @@ alias gs="git status"
 alias gd="git --no-pager diff"
 alias gdc="git diff --cached"
 alias amend="git commit --amend"
-alias blame="git blame --date=short --color-lines -w"
 alias gl="git log --oneline"
 alias gla="gl --graph --all"
 
+blame(){
+	filename=$1
+	# Yeah, we're turning the git log into one large sed command
+	gensed=`git log --oneline | sed -e 's/\([^ ]*\) \(.*\)/-e "s@\1[^)]*@\2@"/' | tr "\ " " "`
+	git blame -s $filename | eval sed $gensed | $PAGER
+
+}
 
 #  _____         _                             _            
 # |_   _|_ _ ___| | ____      ____ _ _ __ _ __(_) ___  _ __ 
