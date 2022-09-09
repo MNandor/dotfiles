@@ -75,6 +75,7 @@ alias locate='locate -i'
 alias nonet='firejail --net=none'
 alias mnt='sudo mount /dev/sda1 /mnt'
 alias umnt='sudo umount /mnt'
+alias cal="cal --monday"
 
 # Grep
 alias lgrep='ls | grep'
