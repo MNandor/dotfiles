@@ -90,12 +90,22 @@ myprojects(){
 			echo -ne "\e[32mG\e[0m "
 		fi
 
+		soft=`git -C "/home/n/Projects/$fold" remote get-url soft 2>/dev/null`
+		if [[ -n "$soft" ]]; then
+			echo -ne "\e[32mS\e[0m "
+		fi
+
 		# Show folder name
 		echo -ne "\e[35m$fold\e[0m "
 
 		# Line #3 is the short description
-		cat ~/Projects/$fold/README.md | sed -n "3p"
-   	done | tr -d "\`" | sort
+		cat ~/Projects/$fold/README.md | sed -n "3p" # | tr "\n" "@"
+
+		# Latest commit
+# 		git -C "/home/n/Projects/$fold" log --oneline | head -n1
+   	done | tr -d "\`" | sort # | tr "@" "\n"
+}
+export -f myprojects # allows to be used with `watch`
 }
 
 # Grep
