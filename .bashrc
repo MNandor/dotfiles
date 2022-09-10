@@ -227,4 +227,4 @@ promptc(){
 		echo -e "\e[1;33m$gitname\e[0m / \e[1;34m$username\e[0m[\e[1;34m$usermail\e[0m]\e[0m / $commitcount \e[1;32m✓\e[0m $changecount \e[1;33m✗\e[0m"
 	fi
 }
-PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} promptc" 
+[[ -z `echo "$PROMPT_COMMAND" | grep promptc` ]] && PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ;} promptc" 
