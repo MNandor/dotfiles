@@ -77,6 +77,27 @@ alias mnt='sudo mount /dev/sda1 /mnt'
 alias umnt='sudo umount /mnt'
 alias cal="cal --monday"
 
+myprojects(){
+	# Iterate through folders in ~/Projects
+	for fold in `command ls ~/Projects`; do
+		# Line #4 is the programming language tag
+		line=$(cat ~/Projects/$fold/README.md | sed -n "4p" | tr -d "\n\`")
+	   	echo -ne "\e[34m$line\e[0m "
+
+		# Check if there's a remote "origin" on github
+		github=`git -C "/home/n/Projects/$fold" remote get-url origin 2>/dev/null | grep github`
+		if [[ -n "$github" ]]; then
+			echo -ne "\e[32mG\e[0m "
+		fi
+
+		# Show folder name
+		echo -ne "\e[35m$fold\e[0m "
+
+		# Line #3 is the short description
+		cat ~/Projects/$fold/README.md | sed -n "3p"
+   	done | tr -d "\`" | sort
+}
+
 # Grep
 alias lgrep='ls | grep'
 alias hgrep="history | grep"
