@@ -10,6 +10,7 @@ export XMODIFIERS=@im=ibus
 export QT_IM_MODULE=ibus
 export EDITOR="vim"
 export HISTCONTROL=ignoreboth
+export PAGER=vimpager
 
 
 # If not running interactively, don't do anything
@@ -53,6 +54,7 @@ alias find='find . -name'
 alias dmenu='dmenu -nb "#000000" -nf "#FF0000" -sf "#000000" -sb "#FF0000" -i -l 5'
 alias syu='sudo pacman -Syu'
 alias xclip='xclip -sel clip'
+alias watch="watch --color"
 
 # True aliases
 alias ..='cd ..'
@@ -106,12 +108,20 @@ myprojects(){
    	done | tr -d "\`" | sort # | tr "@" "\n"
 }
 export -f myprojects # allows to be used with `watch`
+
+mybranches(){
+	for fold in `command ls ~/Projects`; do
+		echo "$fold"
+		git -C "/home/n/Projects/$fold" branch
+	done
+}
 }
 
 # Grep
 alias lgrep='ls | grep'
 alias hgrep="history | grep"
 alias bgrep='cat ~/.bashrc | grep'
+alias tgrep='grep -r todo .'
 
 # Edit Common Files
 alias vbash='vim ~/.bashrc && source ~/.bashrc'
@@ -175,7 +185,7 @@ alias ga="git add ."
 alias gc="git commit -m"
 alias gac="git add . && git commit -m"
 alias gs="git status"
-alias gd="git --no-pager diff"
+alias gd="git diff"
 alias gdc="git diff --cached"
 alias amend="git commit --amend"
 alias gl="git log --oneline"
@@ -202,8 +212,9 @@ alias tbp='tdb pro:$(t _unique project | dmenu)'
 alias tpb='tdb pro:$(t _unique project | dmenu)'
 alias tt='td pro:inbox'
 alias tmr='task modify wait:tomorrow'
+alias subtask='task $(task +LATEST uuids) annotate subtask: '
 alias tasknocontext='task rc.context:none'
-alias backlog="task rc.context=backlog limit: "
+alias backlog="task rc.context=backlog"
 alias tw='timew'
 
 
