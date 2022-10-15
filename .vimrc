@@ -220,3 +220,15 @@ autocmd FileType html vnoremap <C-_> :g/^<!--\(.*\)-->$/s/^<!--\(.*\)-->$/\1#<Cr
 autocmd FileType python,sh set list
 autocmd FileType python,sh set listchars=tab:\|\ \ 
 
+"  ____  _             _           
+" |  _ \| |_   _  __ _(_)_ __  ___ 
+" | |_) | | | | |/ _` | | '_ \/ __|
+" |  __/| | |_| | (_| | | | | \__ \
+" |_|   |_|\__,_|\__, |_|_| |_|___/
+"                |___/             
+
+let mapleader=' '
+
+:nnoremap <leader>nt :NERDTreeToggle<cr>
+:nnoremap <leader>gg :GitGutterToggle<cr>
+let g:table_mode_corner='|'
