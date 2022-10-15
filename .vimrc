@@ -132,6 +132,8 @@ set completeopt=menuone,longest
 :inoremap <S-Tab> <C-p>
 :inoremap <expr> <CR> pumvisible() ? "<Space>" : "<CR>"
 :inoremap <expr> <Tab> pumvisible() ? "<C-n>" : "<Tab>"
+:inoremap <expr> <Up> pumvisible() ? "<C-p>" : "<Up>"
+:inoremap <expr> <Down> pumvisible() ? "<C-n>" : "<Down>"
 :inoremap <C-f> <C-x><C-f>
 
 " Spellcheck
@@ -181,6 +183,7 @@ autocmd FileType c nnoremap <S-r> :w<Cr>:!gcc $(ls %:h/*.c) && ./a.out<Cr>
 function LoadVim()
 	exec('g/^[^ ]*vim \(.*\)$/norm ^f ly$:"')
 endfunction
+nnoremap gc :call LoadVim()<Cr>
 
 
 source ~/.vim/mnvim/markdown.vim
