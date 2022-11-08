@@ -186,7 +186,7 @@ endfunction
 nnoremap gc :call LoadVim()<Cr>
 
 
-source ~/.vim/mnvim/markdown.vim
+" source ~/.vim/mnvim/markdown.vim
 
 
 "  ____                                                _             

@@ -115,7 +115,7 @@ mybranches(){
 		git -C "/home/n/Projects/$fold" branch
 	done
 }
-}
+
 
 # Grep
 alias lgrep='ls | grep'
