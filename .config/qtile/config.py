@@ -45,6 +45,7 @@ tilde = '/home/n'
 terminal = guess_terminal()
 bigterminal = "xfce4-terminal --zoom 3 --color-text=#FFFFFF --color-bg=#000000"
 
+dmenu='dmenu -nb "#000000" -nf "#FF0000" -sf "#000000" -sb "#FF0000" -i -l 5'
 
 #  _____                 _   _                 
 # |  ___|   _ _ __   ___| |_(_) ___  _ __  ___ 
@@ -125,11 +126,22 @@ keys = [
 	Key(['mod2', win], "p", lazy.spawn('notify-send hi')), # todo run xposition
 
 
+	Key([win], "left", lazy.screen.prev_group(), desc="Previous workspace"),
+	Key([win], "right", lazy.screen.next_group(), desc="Next workspace"),
+
+
+
 	# Screenshots
-	Key([], "Print", lazy.spawn("xfce4-screenshooter -cf")),
-	Key([shift], "Print", lazy.spawn("xfce4-screenshooter -cr")),
-	Key(['control'], "Print", lazy.spawn("xfce4-screenshooter -f")),
-	Key(['control', shift], "Print", lazy.spawn("xfce4-screenshooter -r")),
+# 	Key([], "Print", lazy.spawn("xfce4-screenshooter -cf")),
+# 	Key([shift], "Print", lazy.spawn("xfce4-screenshooter -cr")),
+# 	Key(['control'], "Print", lazy.spawn("xfce4-screenshooter -f")),
+# 	Key(['control', shift], "Print", lazy.spawn("xfce4-screenshooter -r")),
+# 	Key([], "Print", lazy.spawn("flameshot full --clipboard")),
+# 	Key([shift], "Print", lazy.spawn("flameshot gui --clipboard")),
+# 	Key(['control'], "Print", lazy.spawn("flameshot full")),
+# 	Key(['control', shift], "Print", lazy.spawn("flameshot gui")),
+	Key([], "Print", lazy.spawn("flameshot full")),
+	Key([shift], "Print", lazy.spawn("flameshot gui")),
 
 	# Screen Lock
 	# Note: win-l is already is use
@@ -184,6 +196,7 @@ groups = [
 	Group('4', matches=[Match(wm_class=['VirtualBox Machine'])]),
 	Group('5', matches=[]),
 ]
+# the command to get the info like wm_class is 'xprop'
 
 for i in groups:
 	keys.extend([
@@ -392,7 +405,11 @@ def autostart():
 	subprocess.Popen(['ibus-daemon'])
 	subprocess.Popen(['picom'])
 	subprocess.Popen(['xset', 'r', 'rate', '300', '50'])
-	subprocess.Popen(['optimus-manager-qt']) # recompiled version that avoids a crash
+	subprocess.Popen(['optimus-manager-qt']) 
+	subprocess.Popen(['copyq']) 
+	subprocess.Popen(['flameshot']) 
+	subprocess.Popen(['syncthing']) 
+	subprocess.Popen(['libinput-gestures']) 
 
 
 
