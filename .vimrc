@@ -52,8 +52,8 @@ set breakindent
 :vnoremap <C-k> :m-2<CR>gv
 :vnoremap <C-j> :m'>+<CR>gv
 " Move word left/right
-:nnoremap <C-l> diwwPldebhPlw
-:nnoremap <C-h> diwgebPldepbhb
+:nnoremap <silent> <C-h> "_yiw?\w\+\_W\+\%#<CR>:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o><c-l>:nohlsearch<CR>
+:nnoremap <silent> <C-l> "_yiw:s/\(\%#\w\+\)\(\_W\+\)\(\w\+\)/\3\2\1/<CR><c-o>/\w\+\_W\+<CR><c-l>:nohlsearch<CR>
 
 " Jump to bookmark
 :nnoremap M `
