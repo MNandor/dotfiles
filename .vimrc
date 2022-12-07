@@ -103,6 +103,9 @@ endfunction
 " Remap a to insert a single character
 nnoremap a i_<Esc>r
 
+" Y consistent with D and C
+nnoremap Y y$
+
 " Delete without overwriting clipboard
 :nnoremap X "_d
 :nnoremap XX "_dd
@@ -120,6 +123,8 @@ set scrolloff=5
 " Show whitespace on :set list
 :set listchars+=tab:-->,space:␣,multispace:___-,extends:~
 
+" Replay macro quicker
+noremap Q @@
 "     _         _                                  _      _       
 "    / \  _   _| |_ ___   ___ ___  _ __ ___  _ __ | | ___| |_ ___ 
 "   / _ \| | | | __/ _ \ / __/ _ \| '_ ` _ \| '_ \| |/ _ \ __/ _ \
