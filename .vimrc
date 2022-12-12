@@ -152,7 +152,7 @@ autocmd FileType html inoremap ?? <Esc>bi__<Esc>yiw:s/<C-R>"/<&>@@<\/&><Cr>:s/__
 autocmd FileType tex inoremap ?? <Esc>bi__<Esc>yiw:s/<C-R>"/\\begin{&}\r@@\r\\end{&}<Cr>:.-2,.s/__//g<Cr>/@@<Cr>xxi
 
 " Change next marker
-:nnoremap <Space><Space> /<@@><Cr>"_c4l
+:nnoremap <Space><Space> /<@@><Cr>:noh<Cr>"_c4l
 
 " Abbreviations
 ab lorem Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
