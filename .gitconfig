@@ -1,0 +1,13 @@
+[credential]
+	helper = store
+[init]
+	defaultBranch = master
+[pull]
+	rebase = true
+[alias]
+	ignore = update-index --assume-unchanged
+	unignore = update-index --no-assume-unchanged
+[merge]
+	tool = vimdiff
+[mergetool]
+	keepBackup = false
