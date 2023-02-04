@@ -217,6 +217,7 @@ alias subtask='task $(task +LATEST uuids) annotate subtask: '
 alias tasknocontext='task rc.context:none'
 alias backlog="task rc.context=backlog"
 alias tw='timew'
+alias ts='tasksh'
 
 
 
