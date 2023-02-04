@@ -17,7 +17,7 @@ cd dotfiles
 GNU Stow doesn't like to overwrite existing files. As a workaround:
 
 ```bash
-stow --adopt .
+stow --adopt --target=$HOME .
 git restore .
 ```
 
