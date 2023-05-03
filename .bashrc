@@ -190,6 +190,7 @@ alias gdc="git diff --cached"
 alias amend="git commit --amend"
 alias gl="git log --oneline"
 alias gla="gl --graph --all"
+alias gco="git checkout"
 alias githublink='sed -e "s#https://github.com/#git@github.com:#" -e "s/^.*$/git remote set-url origin \0.git/"'
 
 blame(){
