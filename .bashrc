@@ -50,7 +50,7 @@ alias diff="diff --color"
 alias powertop='sudo powertop'
 alias shutdown='shutdown now'
 alias rm='rm -i'
-alias find='find . -name'
+alias ifind="find . -iname"
 alias dmenu='dmenu -nb "#000000" -nf "#FF0000" -sf "#000000" -sb "#FF0000" -i -l 5'
 alias syu='sudo pacman -Syu'
 alias xclip='xclip -sel clip'
@@ -58,6 +58,7 @@ alias watch="watch --color"
 
 # True aliases
 alias ..='cd ..'
+alias ...='cd ../..'
 alias py="python3"
 alias python="python3"
 alias pip="pip3"
@@ -71,6 +72,7 @@ alias clcd='cd ~ && clear'
 alias zipthisfolder='zip -r zipname *'
 alias howmuchspaceisonmydrives='df -h'
 alias vanenet='ping example.com'
+alias vanenet='watch ping -c 1 example.com'
 alias weather='curl wttr.in'
 alias bctl="bluetoothctl"
 alias locate='locate -i'
@@ -121,7 +123,10 @@ mybranches(){
 alias lgrep='ls | grep'
 alias hgrep="history | grep"
 alias bgrep='cat ~/.bashrc | grep'
-alias tgrep='grep -r todo .'
+alias tgrep='grep -n -r todo .'
+rgrep(){ 
+	grep -r "$@" .
+}
 
 # Edit Common Files
 alias vbash='vim ~/.bashrc && source ~/.bashrc'
@@ -182,7 +187,10 @@ alias ranger="ranger_cd"
 
 # Git
 alias ga="git add ."
+alias gap="git add -p ."
 alias gc="git commit -m"
+alias gco="git checkout"
+alias gce="git checkout"
 alias gac="git add . && git commit -m"
 alias gs="git status"
 alias gd="git diff"
@@ -190,20 +198,22 @@ alias gdc="git diff --cached"
 alias amend="git commit --amend"
 alias gl="git log --oneline"
 alias gla="gl --graph --all"
-alias gco="git checkout"
+alias gmt="git mergetool"
+alias grs="git restore"
+alias grc="git rebase --continue"
+alias gitroot='cd $(git rev-parse --show-toplevel)'
 alias githublink='sed -e "s#https://github.com/#git@github.com:#" -e "s/^.*$/git remote set-url origin \0.git/"'
 
 blame(){
-	filename=$1
+	filename=$@
 	# Yeah, we're turning the git log into one large sed command
 	gensed=`git log --oneline | sed -e 's/\([^ ]*\) \(.*\)/-e "s@\1[^)]*@\2@"/' | tr "\ " " "`
-	git blame -s $filename | eval sed $gensed | $PAGER
+	git blame -s $@ | eval sed $gensed | $PAGER
 
 }
 
 gituser(){
 	options=$(command ls -d ~/.ssh/*/ | grep -o '[^/]*/$' | tr -d '/')
-
 	ch=$(echo -e "$options" | fzf)
 	cp ~/.ssh/$ch/* ~/.ssh/
 }
@@ -221,6 +231,7 @@ alias tpb='tdb pro:$(t _unique project | dmenu)'
 alias tt='td pro:inbox'
 alias tmr='task modify wait:tomorrow'
 alias subtask='task $(task +LATEST uuids) annotate subtask: '
+alias nexttask='task add depends:$(task +LATEST uuids)'
 alias tasknocontext='task rc.context:none'
 alias backlog="task rc.context=backlog"
 alias tw='timew'
@@ -236,6 +247,7 @@ alias ts='tasksh'
 # |____/|_| |_|\___|_|_|
                       
 # Use arrows to search through history
+set -o vi
 # Up Arrow
 bind '"\e[A": history-search-backward'
 # Down Arrow
