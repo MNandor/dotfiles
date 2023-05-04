@@ -21,6 +21,10 @@ set splitright
 set linebreak
 set breakindent
 " set colorcolumn=81
+set nomodeline
+set nrformats+=unsigned
+
+inoremap <C-r><C-r> <C-r>+
 
 
 "  __  __                                     _   
@@ -116,6 +120,9 @@ set scrolloff=5
 
 " To go with ZZ and ZQ shortcuts
 :nnoremap ZS :w<Cr>
+
+" Quick edit last file
+nnoremap ee :w<Cr>:e#<Cr>
 
 " Shift-R is overridden, use gR for original
 :nnoremap gR R
@@ -247,3 +254,28 @@ let mapleader=' '
 :nnoremap <leader>nt :NERDTreeToggle<cr>
 :nnoremap <leader>gg :GitGutterToggle<cr>
 let g:table_mode_corner='|'
+"  ____  _      _       _____         _   
+" |  _ \(_) ___| |__   |_   _|____  _| |_ 
+" | |_) | |/ __| '_ \    | |/ _ \ \/ / __|
+" |  _ <| | (__| | | |   | |  __/>  <| |_ 
+" |_| \_\_|\___|_| |_|   |_|\___/_/\_\\__|
+                                        
+
+
+autocmd filetype markdown imap ?b ****<Left><Left>
+autocmd filetype markdown imap ?i **<Left>
+autocmd filetype markdown imap ?u <u></u><left><left><left><left>
+autocmd filetype markdown imap ?s ~~~~<Left><Left>
+autocmd filetype markdown imap ?c ``<Left>
+autocmd filetype markdown imap ?a []()<left><left><left>
+autocmd filetype markdown imap ?l [<@@>](<C-r>+)<Esc>^<Space><Space>
+autocmd filetype markdown imap ?p <p></p><left><left><left><left>
+autocmd filetype markdown imap ?m ![](<@@>)<Esc>^<Space><Space>
+
+autocmd filetype markdown vmap <leader>b "tyiKEKKEK<Esc>:s/KEKKEK<C-r>t/**<C-r>t**/<Cr>
+autocmd filetype markdown vmap <leader>i "tyiKEKKEK<Esc>:s/KEKKEK<C-r>t/*<C-r>t*/<Cr>
+autocmd filetype markdown vmap <leader>u "tyiKEKKEK<Esc>:s/KEKKEK<C-r>t/<u><C-r>t<\/u>/<Cr>
+autocmd filetype markdown vmap <leader>s "tyiKEKKEK<Esc>:s/KEKKEK<C-r>t/\~\~<C-r>t\~\~/<Cr>
+autocmd filetype markdown vmap <leader>c "tyiKEKKEK<Esc>:s/KEKKEK<C-r>t/`<C-r>t`/<Cr>
+autocmd filetype markdown vmap <leader>a "tyiKEKKEK<Esc>:s/KEKKEK<C-r>t/[<C-r>t](<@@>)/<Cr>
+autocmd filetype markdown vmap <leader>p "tyiKEKKEK<Esc>:s/KEKKEK<C-r>t/<p><C-r>t<\/p>/<Cr>
