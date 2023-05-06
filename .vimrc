@@ -26,6 +26,10 @@ set nrformats+=unsigned
 
 inoremap <C-r><C-r> <C-r>+
 
+nnoremap c "cc
+nnoremap C "cC
+
+noremap <silent> <C-q> :norm ==<Cr>
 
 "  __  __                                     _   
 " |  \/  | _____   _____ _ __ ___   ___ _ __ | |_ 
