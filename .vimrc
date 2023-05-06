@@ -283,3 +283,8 @@ autocmd filetype markdown vmap <leader>s "tyiKEKKEK<Esc>:s/KEKKEK<C-r>t/\~\~<C-r
 autocmd filetype markdown vmap <leader>c "tyiKEKKEK<Esc>:s/KEKKEK<C-r>t/`<C-r>t`/<Cr>
 autocmd filetype markdown vmap <leader>a "tyiKEKKEK<Esc>:s/KEKKEK<C-r>t/[<C-r>t](<@@>)/<Cr>
 autocmd filetype markdown vmap <leader>p "tyiKEKKEK<Esc>:s/KEKKEK<C-r>t/<p><C-r>t<\/p>/<Cr>
+
+
+
+" Paste image
+nnoremap <leader>v :r !mkdir %:p:h/img 2>/dev/null ; name=$(uuidgen) && xclip -sel clip -t image/png -o > %:p:h/img/$name.png && echo "\![]($name.png)"
