@@ -45,7 +45,7 @@ alias quit="exit"
 
 # Shadow common commands
 alias grep="grep -i --color=auto"
-alias ls='ls --color=auto -lh --group-directories-first'
+alias ls='ls --color=always -lh --group-directories-first'
 alias diff="diff --color"
 alias powertop='sudo powertop'
 alias shutdown='shutdown now'
@@ -71,7 +71,6 @@ alias pid="ps -aux | grep"
 alias clcd='cd ~ && clear'
 alias zipthisfolder='zip -r zipname *'
 alias howmuchspaceisonmydrives='df -h'
-alias vanenet='ping example.com'
 alias vanenet='watch ping -c 1 example.com'
 alias weather='curl wttr.in'
 alias bctl="bluetoothctl"
@@ -190,11 +189,16 @@ alias ga="git add ."
 alias gap="git add -p ."
 alias gc="git commit -m"
 alias gco="git checkout"
-alias gce="git checkout"
+alias gce=gco
+alias gcb="git checkout -b"
+alias gb="git branch | fzf | xargs git checkout"
 alias gac="git add . && git commit -m"
 alias gs="git status"
 alias gd="git diff"
 alias gdc="git diff --cached"
+alias gdw="git diff --color-words"
+alias gdcw="git diff --color-words --cached"
+alias gdwc=gdcw
 alias amend="git commit --amend"
 alias gl="git log --oneline"
 alias gla="gl --graph --all"
