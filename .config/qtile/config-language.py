@@ -66,7 +66,7 @@ def float_to_front(qtile):
 			window.cmd_bring_to_front()
 			window.cmd_focus()
 
-wallpaper = tilde+'/Pictures/Wallpapers/default.png'
+wallpaper = tilde+'/Pictures/Wallpapers/battery-tux.png'
 
 #  _  __              
 # | |/ /___ _   _ ___ 
@@ -164,11 +164,7 @@ keys = [
 # |_____\__,_|\__,_|_| |_|\___|_| |_|
                                    
 hotkeys = {
-	't': terminal,
- 	's': '/home/n/Other/AppImages/Logseq-linux-x64-0.9.19.AppImage',
 	'e': f'{terminal} -x ranger',
-	'q': 'firefox',
-	'g': 'gthumb',
 	'v': f'{bigterminal} -x vim -c startinsert',
 }
 for key in hotkeys.keys():
@@ -178,13 +174,6 @@ for key in hotkeys.keys():
 
 keys += [
 	# Open terminal
-	Key([win], "Return", lazy.spawn(terminal), desc="Launch terminal"),
-	Key([win, "shift"], "Return", lazy.spawn(bigterminal), desc="Launch high contrast terminal"),
-	Key([win], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
-	Key([win], 'b', lazy.hide_show_bar("all"), desc="Toggle bar"),
-
-	Key([shift, win], 'e', lazy.spawn('thunar'), desc='Launch thunar'),
-	Key([shift, win], 's', lazy.spawn('mypaint'), desc='Launch mypaint'),
 ]
 
 
@@ -196,11 +185,10 @@ keys += [
 #                       |_|        
 
 groups = [
-	Group('1', matches=[Match(wm_class=["Firefox"])]),
-	Group('2', matches=[Match(wm_class=["Steam"])]),
-	Group('3', matches=[Match(title=[x]) for x in "Krita MyPaint Pentablet".split()]),
-	Group('4', matches=[Match(wm_class=['VirtualBox Machine', 'Logseq'])]),
-	Group('5', matches=[],),
+	Group('Q', matches=[Match(wm_class=["Firefox"])]),
+	Group('W', matches=[Match(wm_class=["Joplin"]), ]),
+	Group('A', matches=[Match(wm_class=["anki"]), ]),
+	Group('S', matches=[Match(wm_class=["Logseq"]), ]),
 ]
 # the command to get the info like wm_class is 'xprop'
 
@@ -210,27 +198,23 @@ for num, i in enumerate(groups):
 		Key([win], i.name, lazy.group[i.name].toscreen(),
 			desc="Switch to group {}".format(i.name)),
 
-		# win + shift + letter of group = move focused window to group (do not switch to group though)
-		Key([win, "shift"], i.name, lazy.window.togroup(i.name, switch_group=False), desc="move focused window to group {}".format(i.name)),
+
+		Key([win], str(num+1), lazy.group[i.name].toscreen(),
+			desc="Switch to group {}".format(i.name)),
+
 	])
 
 # ScratchPads experimentation
 # https://docs.qtile.org/en/latest/manual/config/groups.html
 groups += [
 	ScratchPad('scratchpad', [
-		DropDown('anki-dd', 'anki', opacity=0.9, height=0.6, width=0.6, x=0.2, y=0.2),
-		DropDown('joplin-dd', cmd='/home/n/Other/AppImages/Joplin-2.9.17.AppImage', match=Match(title=['Joplin']), opacity=1, height=.96, width=.96, x=0.02, y=0.02),
-		DropDown('anki-dda', cmd='notify-send "Ready to make Anki Add window toggleable!"', match=Match(title=['Add'], wm_class='anki'), opacity=0.9, height=0.8, width=0.6, x=0.2, y=0.1),
 		DropDown('tui-dd', 'xfce4-terminal --title="tui-dd" --command "taskwarrior-tui"', opacity=1, match=Match(title='tui-dd'), width=0.5, x=0.5, height=1, y=0),
-		DropDown('nto-dd', 'xfce4-terminal --title="nto-dd"', opacity=1, match=Match(title='nto-dd'), width=0.5, x=0, height=1, y=0),
+		DropDown('nto-dd', 'xfce4-terminal --title="nto-dd" --command "vim"', opacity=1, match=Match(title='nto-dd'), width=0.5, x=0, height=1, y=0),
 		]
 	),
 ]
 keys += [Key([], 'F2', lazy.group['scratchpad'].dropdown_toggle('nto-dd'), desc='Toggle scratchpad terminal')]
 keys += [Key([], 'F3', lazy.group['scratchpad'].dropdown_toggle('tui-dd'), desc='Toggle scratchpad taskwarrior-tui')]
-keys += [Key([win], 'a', lazy.group['scratchpad'].dropdown_toggle('anki-dd'), desc='Toggle scratchpad Anki')]
-keys += [Key([win], 'w', lazy.group['scratchpad'].dropdown_toggle('joplin-dd'), desc='Toggle scratchpad Anki')]
-keys += [Key([win, shift], 'a', lazy.group['scratchpad'].dropdown_toggle('anki-dda'), desc='Toggle scratchpad Anki')]
 
 #  _                            _       
 # | |    __ _ _   _  ___  _   _| |_ ___ 
@@ -240,7 +224,7 @@ keys += [Key([win, shift], 'a', lazy.group['scratchpad'].dropdown_toggle('anki-d
 #             |___/                     
 
 layouts = [
-	layout.Columns(border_focus_stack=['#d75f5f', '#8f3d3d'], border_width=2, margin=0, insert_position=1),
+	layout.Columns(border_focus_stack=['#5fd6d6', '#3d8f8f'], border_focus='#2222FF', border_normal='#000022', border_width=2, margin=2, insert_position=1),
 	layout.Max(),
 	# Try more layouts by unleashing below layouts.
 # 	layout.Stack(num_stacks=2),
@@ -334,7 +318,7 @@ bottomBar=bar.Bar(
 	[
 		widget.WindowCount(show_zero=True),
 		widget.CurrentLayout(),
-		widget.GroupBox(this_current_screen_border='c72828', disable_drag=True, visible_groups='1234'),
+		widget.GroupBox(this_current_screen_border='c72828', disable_drag=True, visible_groups='AQWS'),
 		widget.Prompt(),
 		widget.WindowName(mouse_callbacks={'Button1':lazy.window.opacity(1), 'Button3': lazy.window.opacity(0.5)}),
 		widget.WidgetBox(widgets = [
@@ -359,14 +343,13 @@ bottomBar=bar.Bar(
 		),
 		widget.Cmus(fmt='{}', update_interval=2, play_color=cgreen),
 		widget.Notify(background='#FF0000', foreground='#000000'),
-		widget.GenPollText(func=pollFunc2, update_interval=1, mouse_callbacks={'Button1': openMarker}, foreground='#FF4400'),
 		widget.GenPollText(func=pollFunc1, update_interval=1, mouse_callbacks={'Button1': stopTimer, 'Button2': cancelTimer, 'Button3': startTimer}, foreground='#00AAFF'),
-		widget.Wttr(location={'':'Mmm'}, format='%t %C', foreground='ff8f00'),
 		widget.Systray(),
 		widget.GenPollText(func=pollFunc4, update_interval=1, mouse_callbacks={'Button1': xposition, 'Button2':xtablet, 'Button3':xrotate}, foreground='#FFFFFF'),
 		widget.PulseVolume(foreground = cpink, fmt='?{}'),
 		widget.Battery(format='{char}{percent:2.0%}', foreground=cteal, notify_below=0.55, low_percentage=0.15, charge_char='+', discharge_char='-'),
 		widget.Backlight(backlight_name='intel_backlight', foreground=cyellow, fmt='*{}', mouse_callbacks={'Button1':redshiftOff, 'Button3':redshiftOn, 'Button2':xbright}),
+		widget.Pomodoro(),
 		widget.Clock(format='%b %d %a', foreground='#FF8f8f'),
 		widget.Clock(format='%I:%M %p', foreground='#FF3f3f'),
 		widget.QuickExit(),
@@ -450,7 +433,6 @@ def spo(a):
 
 @hook.subscribe.startup_once
 def autostart():
-	spo(['albert'])
 	spo(['xset', 'r', 'rate', '300', '50'])
 	spo(['syncthing']) 
 	spo(['ibus-daemon'])
@@ -458,17 +440,12 @@ def autostart():
 	spo(['copyq']) 
 	spo(['flameshot']) 
 	spo(['libinput-gestures']) 
+	spo(['anki']) 
+	spo('firefox --profile /home/n/.mozilla/firefox/odrfifn6.School'.split()) 
+	spo(['/home/n/Other/AppImages/Logseq-linux-x64-0.9.19.AppImage']) 
+	spo(['/home/n/Other/AppImages/Joplin-2.9.17.AppImage'])
 	spo(['optimus-manager-qt']) 
 
-
-@hook.subscribe.client_new
-def fix_group(window):
-	if "albert" in window.get_wm_class(): 
-		group = qtile.current_group
-		if window.group != group:
-			window.togroup(group.name)
-		window.cmd_bring_to_front()
-		window.cmd_focus()
 
 
 
