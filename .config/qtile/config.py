@@ -40,6 +40,7 @@ from libqtile.log_utils import logger
 
 win = "mod4"
 alt = "mod1"
+ctrl = 'control'
 shift = 'shift'
 tilde = '/home/n'
 terminal = guess_terminal()
@@ -59,9 +60,11 @@ def float_to_front(qtile):
 	Bring all floating windows of the group to front
 	https://github.com/qtile/qtile/issues/974 todo
 	"""
+# 	logger.warning(str(dir(qtile)))
 	for window in qtile.current_group.windows:
 		if window.floating:
 			window.cmd_bring_to_front()
+			window.cmd_focus()
 
 wallpaper = tilde+'/Pictures/Wallpapers/default.png'
 
@@ -123,7 +126,6 @@ keys = [
 	Key(['mod2'], "XF86AudioPause", lazy.spawn('cmus-remote -u')),
 	Key([], "XF86AudioNext", lazy.spawn('cmus-remote --next')),
 	Key([], "XF86AudioPrev", lazy.spawn('cmus-remote --prev')),
-	Key(['mod2', win], "p", lazy.spawn('notify-send hi')), # todo run xposition
 
 
 	Key([win], "left", lazy.screen.prev_group(), desc="Previous workspace"),
@@ -140,14 +142,18 @@ keys = [
 # 	Key([shift], "Print", lazy.spawn("flameshot gui --clipboard")),
 # 	Key(['control'], "Print", lazy.spawn("flameshot full")),
 # 	Key(['control', shift], "Print", lazy.spawn("flameshot gui")),
-	Key([], "Print", lazy.spawn("flameshot full")),
+	Key([], "Print", lazy.spawn("flameshot full --clipboard")),
+	Key([ctrl], "Print", lazy.spawn("flameshot full")),
 	Key([shift], "Print", lazy.spawn("flameshot gui")),
 
 	# Screen Lock
 	# Note: win-l is already is use
 	Key([win], "o", lazy.spawn("slock")),
 
-	Key([win, shift], 'v', float_to_front, desc="Floating windows to front"),
+	Key([alt, "control"], 'tab', float_to_front, desc="Floating windows to front"),
+	Key([win, "control"], 'tab', float_to_front, desc="Floating windows to front"),
+	Key([win], 'up', float_to_front, desc="Floating windows to front"),
+	Key([win], "down", lazy.layout.next(), desc="Move window focus to other window"),
 	
 ]
 
@@ -159,12 +165,11 @@ keys = [
                                    
 hotkeys = {
 	't': terminal,
-	'w': 'joplin-desktop',
+ 	's': '/home/n/Other/AppImages/Logseq-linux-x64-0.9.19.AppImage',
 	'e': f'{terminal} -x ranger',
 	'q': 'firefox',
-	'a': 'anki',
-	's': 'mypaint',
-	'v': f'{bigterminal} -x vim -c startinsert'
+	'g': 'gthumb',
+	'v': f'{bigterminal} -x vim -c startinsert',
 }
 for key in hotkeys.keys():
 	value = hotkeys[key]
@@ -176,11 +181,12 @@ keys += [
 	Key([win], "Return", lazy.spawn(terminal), desc="Launch terminal"),
 	Key([win, "shift"], "Return", lazy.spawn(bigterminal), desc="Launch high contrast terminal"),
 	Key([win], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
-
-	Key([shift, win], 'e', lazy.spawn('nemo'), desc='Launch nemo'),
 	Key([win], 'b', lazy.hide_show_bar("all"), desc="Toggle bar"),
 
+	Key([shift, win], 'e', lazy.spawn('thunar'), desc='Launch thunar'),
+	Key([shift, win], 's', lazy.spawn('mypaint'), desc='Launch mypaint'),
 ]
+
 
 #   ____                           
 #  / ___|_ __ ___  _   _ _ __  ___ 
@@ -191,14 +197,14 @@ keys += [
 
 groups = [
 	Group('1', matches=[Match(wm_class=["Firefox"])]),
-	Group('2', matches=[Match(wm_class=["Joplin"])]),
+	Group('2', matches=[Match(wm_class=["Steam"])]),
 	Group('3', matches=[Match(title=[x]) for x in "Krita MyPaint Pentablet".split()]),
-	Group('4', matches=[Match(wm_class=['VirtualBox Machine'])]),
-	Group('5', matches=[]),
+	Group('4', matches=[Match(wm_class=['VirtualBox Machine', 'Logseq'])]),
+	Group('5', matches=[],),
 ]
 # the command to get the info like wm_class is 'xprop'
 
-for i in groups:
+for num, i in enumerate(groups):
 	keys.extend([
 		# win + letter of group = switch to group
 		Key([win], i.name, lazy.group[i.name].toscreen(),
@@ -212,7 +218,9 @@ for i in groups:
 # https://docs.qtile.org/en/latest/manual/config/groups.html
 groups += [
 	ScratchPad('scratchpad', [
-		DropDown('anki-dd', 'anki', opacity=0.9, height=0.45, width=0.6, x=0.2),
+		DropDown('anki-dd', 'anki', opacity=0.9, height=0.6, width=0.6, x=0.2, y=0.2),
+		DropDown('joplin-dd', cmd='/home/n/Other/AppImages/Joplin-2.9.17.AppImage', match=Match(title=['Joplin']), opacity=1, height=.96, width=.96, x=0.02, y=0.02),
+		DropDown('anki-dda', cmd='notify-send "Ready to make Anki Add window toggleable!"', match=Match(title=['Add'], wm_class='anki'), opacity=0.9, height=0.8, width=0.6, x=0.2, y=0.1),
 		DropDown('tui-dd', 'xfce4-terminal --title="tui-dd" --command "taskwarrior-tui"', opacity=1, match=Match(title='tui-dd'), width=0.5, x=0.5, height=1, y=0),
 		DropDown('nto-dd', 'xfce4-terminal --title="nto-dd"', opacity=1, match=Match(title='nto-dd'), width=0.5, x=0, height=1, y=0),
 		]
@@ -220,7 +228,9 @@ groups += [
 ]
 keys += [Key([], 'F2', lazy.group['scratchpad'].dropdown_toggle('nto-dd'), desc='Toggle scratchpad terminal')]
 keys += [Key([], 'F3', lazy.group['scratchpad'].dropdown_toggle('tui-dd'), desc='Toggle scratchpad taskwarrior-tui')]
-keys += [Key([], 'F8', lazy.group['scratchpad'].dropdown_toggle('anki-dd'), desc='Toggle scratchpad Anki')]
+keys += [Key([win], 'a', lazy.group['scratchpad'].dropdown_toggle('anki-dd'), desc='Toggle scratchpad Anki')]
+keys += [Key([win], 'w', lazy.group['scratchpad'].dropdown_toggle('joplin-dd'), desc='Toggle scratchpad Anki')]
+keys += [Key([win, shift], 'a', lazy.group['scratchpad'].dropdown_toggle('anki-dda'), desc='Toggle scratchpad Anki')]
 
 #  _                            _       
 # | |    __ _ _   _  ___  _   _| |_ ___ 
@@ -240,7 +250,7 @@ layouts = [
 # 	layout.MonadWide(),
 # 	layout.RatioTile(),
 # 	layout.Tile(),
-# 	layout.TreeTab(),
+# 	layout.TreeTab(panel_width=960, section_bottom=200),
 # 	layout.VerticalTile(),
 # 	layout.Zoomy(),
 ]
@@ -263,10 +273,11 @@ def pollFunc1():
 
 def pollFunc2():
 	return "WIP"
+def cancelTimer():
+	pass
 
 def stopTimer():
-	command = 'timew stop'
-	subprocess.Popen([command], shell=True)
+	pass
 
 def openMarker():
 	pass
@@ -281,6 +292,35 @@ def redshiftOn():
 def redshiftOff():
 	command = 'redshift -P -O 7000'
 	subprocess.Popen([command], shell=True)
+
+def xposition():
+	smn = '''xrandr | grep HDMI | sed -e '/HDMI/!d' -e 's/\\([^ ]\\) .*/\\1/' '''
+	smn = subprocess.check_output(smn, shell=True).decode(encoding='utf-8').strip()
+	mmn = '''xrandr | grep eDP | sed -e '/eDP/!d' -e 's/\\([^ ]\\) .*/\\1/' '''
+	mmn = subprocess.check_output(mmn, shell=True).decode(encoding='utf-8').strip()
+	cmd = f'''xrandr --auto && xrandr --auto --output {smn}  --$(echo -e "left\\nright" | {dmenu})-of {mmn}'''
+	
+	command = f'notify-send {smn} {mmn}'
+	subprocess.Popen([cmd], shell=True)
+
+def xrotate():
+	smn = '''xrandr | grep HDMI | sed -e '/HDMI/!d' -e 's/\\([^ ]\\) .*/\\1/' '''
+	smn = subprocess.check_output(smn, shell=True).decode(encoding='utf-8').strip()
+
+	cmd = f'echo -e "normal\nright\nleft" | {dmenu} |xargs xrandr --output {smn} --rotate'
+	subprocess.Popen([cmd], shell=True)
+
+def xbright():
+	cmd = f'''echo -e "1%\n10%\n20%\n30%\n50%\n100%" | {dmenu} | xargs brightnessctl set'''
+
+	subprocess.Popen([cmd], shell=True)
+
+
+
+def xtablet():
+	pass
+
+
 
 # todo these could be separated better
 
@@ -320,11 +360,12 @@ bottomBar=bar.Bar(
 		widget.Cmus(fmt='{}', update_interval=2, play_color=cgreen),
 		widget.Notify(background='#FF0000', foreground='#000000'),
 		widget.GenPollText(func=pollFunc2, update_interval=1, mouse_callbacks={'Button1': openMarker}, foreground='#FF4400'),
-		widget.GenPollText(func=pollFunc1, update_interval=1, mouse_callbacks={'Button1': stopTimer, 'Button3': startTimer}, foreground='#00AAFF'),
+		widget.GenPollText(func=pollFunc1, update_interval=1, mouse_callbacks={'Button1': stopTimer, 'Button2': cancelTimer, 'Button3': startTimer}, foreground='#00AAFF'),
+		widget.Wttr(location={'':'Mmm'}, format='%t %C', foreground='ff8f00'),
 		widget.Systray(),
 		widget.PulseVolume(foreground = cpink, fmt='?{}'),
 		widget.Battery(format='{char}{percent:2.0%}', foreground=cteal, notify_below=0.55, low_percentage=0.15, charge_char='+', discharge_char='-'),
-		widget.Backlight(backlight_name='amdgpu_bl0', foreground=cyellow, fmt='*{}', mouse_callbacks={'Button1':redshiftOff, 'Button3':redshiftOn}),
+		widget.Backlight(backlight_name='intel_backlight', foreground=cyellow, fmt='*{}', mouse_callbacks={'Button1':redshiftOff, 'Button3':redshiftOn, 'Button2':xbright}),
 		widget.Clock(format='%b %d %a', foreground='#FF8f8f'),
 		widget.Clock(format='%I:%M %p', foreground='#FF3f3f'),
 		widget.QuickExit(),
@@ -380,6 +421,7 @@ floating_layout = layout.Floating(float_rules=[
 	Match(wm_class='nemo'),
 	Match(wm_class='Conky'),
 ])
+
 auto_fullscreen = True
 focus_on_window_activation = "smart"
 reconfigure_screens = True
@@ -399,18 +441,33 @@ import os
 import subprocess
 from libqtile import hook
 
+def spo(a):
+	try:
+		subprocess.Popen(a)
+	except:
+		pass
+
 @hook.subscribe.startup_once
 def autostart():
-	subprocess.Popen(['albert'])
-	subprocess.Popen(['ibus-daemon'])
-	subprocess.Popen(['picom'])
-	subprocess.Popen(['xset', 'r', 'rate', '300', '50'])
-	subprocess.Popen(['optimus-manager-qt']) 
-	subprocess.Popen(['copyq']) 
-	subprocess.Popen(['flameshot']) 
-	subprocess.Popen(['syncthing']) 
-	subprocess.Popen(['libinput-gestures']) 
+	spo(['albert'])
+	spo(['xset', 'r', 'rate', '300', '50'])
+	spo(['syncthing']) 
+	spo(['ibus-daemon'])
+	spo(['picom'])
+	spo(['copyq']) 
+	spo(['flameshot']) 
+	spo(['libinput-gestures']) 
+	spo(['optimus-manager-qt']) 
 
+
+@hook.subscribe.client_new
+def fix_group(window):
+	if "albert" in window.get_wm_class(): 
+		group = qtile.current_group
+		if window.group != group:
+			window.togroup(group.name)
+		window.cmd_bring_to_front()
+		window.cmd_focus()
 
 
 
