@@ -276,6 +276,12 @@ def pollFunc1():
 
 def pollFunc2():
 	return "WIP"
+def pollFunc4():
+	command = 'xrandr | grep \\\\sconnected | wc -l | sed /1/d'
+	ret = subprocess.check_output(command, shell=True).decode(encoding='utf-8').strip()
+	return ret
+
+
 def cancelTimer():
 	pass
 
