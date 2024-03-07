@@ -162,6 +162,10 @@ keys = [
 # | |   / _` | | | | '_ \ / __| '_ \ 
 # | |__| (_| | |_| | | | | (__| | | |
 # |_____\__,_|\__,_|_| |_|\___|_| |_|
+
+run_logseq = '/home/n/Other/AppImages/Logseq-linux-x64-0.9.19.AppImage'
+run_joplin = '/home/n/Other/AppImages/Joplin-2.9.17.AppImage'
+run_firefox = 'firefox --profile /home/n/.mozilla/firefox/odrfifn6.School'
                                    
 hotkeys = {
 	'e': f'{terminal} -x ranger',
@@ -447,9 +451,9 @@ def autostart():
 	spo(['flameshot']) 
 	spo(['libinput-gestures']) 
 	spo(['anki']) 
-	spo('firefox --profile /home/n/.mozilla/firefox/odrfifn6.School'.split()) 
-	spo(['/home/n/Other/AppImages/Logseq-linux-x64-0.9.19.AppImage']) 
-	spo(['/home/n/Other/AppImages/Joplin-2.9.17.AppImage'])
+	spo(run_firefox.split()) 
+	spo([run_logseq]) 
+	spo([run_joplin])
 	spo(['optimus-manager-qt']) 
 
 

@@ -162,10 +162,13 @@ keys = [
 # | |   / _` | | | | '_ \ / __| '_ \ 
 # | |__| (_| | |_| | | | | (__| | | |
 # |_____\__,_|\__,_|_| |_|\___|_| |_|
+
+run_logseq = '/home/n/Other/AppImages/Logseq-linux-x64-0.9.19.AppImage'
+run_joplin = '/home/n/Other/AppImages/Joplin-2.9.17.AppImage'
                                    
 hotkeys = {
 	't': terminal,
- 	's': '/home/n/Other/AppImages/Logseq-linux-x64-0.9.19.AppImage',
+ 	's': run_logseq,
 	'e': f'{terminal} -x ranger',
 	'q': 'firefox',
 	'g': 'gthumb',
@@ -219,7 +222,7 @@ for num, i in enumerate(groups):
 groups += [
 	ScratchPad('scratchpad', [
 		DropDown('anki-dd', 'anki', opacity=0.9, height=0.6, width=0.6, x=0.2, y=0.2),
-		DropDown('joplin-dd', cmd='/home/n/Other/AppImages/Joplin-2.9.17.AppImage', match=Match(title=['Joplin']), opacity=1, height=.96, width=.96, x=0.02, y=0.02),
+		DropDown('joplin-dd', cmd=run_joplin, match=Match(title=['Joplin']), opacity=1, height=.96, width=.96, x=0.02, y=0.02),
 		DropDown('anki-dda', cmd='notify-send "Ready to make Anki Add window toggleable!"', match=Match(title=['Add'], wm_class='anki'), opacity=0.9, height=0.8, width=0.6, x=0.2, y=0.1),
 		DropDown('tui-dd', 'xfce4-terminal --title="tui-dd" --command "taskwarrior-tui"', opacity=1, match=Match(title='tui-dd'), width=0.5, x=0.5, height=1, y=0),
 		DropDown('nto-dd', 'xfce4-terminal --title="nto-dd"', opacity=1, match=Match(title='nto-dd'), width=0.5, x=0, height=1, y=0),
