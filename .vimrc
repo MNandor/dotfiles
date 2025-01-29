@@ -159,12 +159,25 @@ set completeopt=menuone,longest
 :inoremap <expr> <Down> pumvisible() ? "<C-n>" : "<Down>"
 :inoremap <C-f> <C-x><C-f>
 
+
+" Beginning of line? Act as normal tab
+" After some whitespace but otherwise beginning of line? Normal tab
+" Text written already? Trigger completion
+autocmd FileType python,vim,sh, inoremap <expr> <Tab> getline('.')[0 : col('.') - 2] =~ '^\s*$' ? "\<Tab>" : pumvisible() ? "\<C-n>" : "\<C-p>"
+
+
 " Spellcheck
 :inoremap <C-b> <C-x>s
 :noremap <C-b> [sz=
 
 " Complete HTML tag under cursor
 autocmd FileType html inoremap ?? <Esc>bi__<Esc>yiw:s/<C-R>"/<&>@@<\/&><Cr>:s/__//g<Cr>/@@<Cr>xxi
+autocmd FileType html imap ?p <@@><Esc>:s/^\(\s*\)\([^\s].*\)$/\1<p>\2<\/p>/<Cr><Space><Space>
+autocmd FileType html inoremap ?a <a href="<@@>"><C-o>ma</a><C-o>`a<Right>
+autocmd FileType html inoremap ?b <a href="<@@>" target="_blank"><C-o>ma</a><C-o>`a<Right>
+autocmd FileType html inoremap ?c <font color="#<@@>"><C-o>ma</font><C-o>`a<Right>
+autocmd FileType html inoremap ?m <img src="<@@>">
+autocmd FileType html ab htmltable <table><Cr><tr><Cr><th><@@></th><Cr></tr><Cr><tr><Cr><td><@@></td><Cr></tr><Cr></table>
 
 " Complete Latex tag under cursor
 autocmd FileType tex inoremap ?? <Esc>bi__<Esc>yiw:s/<C-R>"/\\begin{&}\r@@\r\\end{&}<Cr>:.-2,.s/__//g<Cr>/@@<Cr>xxi
@@ -195,11 +208,18 @@ autocmd FileType markdown ab cb - [ ]
 :noremap <S-s> :sh<CR>
 
 " Run other languages
-autocmd FileType tex nnoremap <S-r> :w<Cr>:!pdflatex "%"<Cr>
+autocmd FileType tex nnoremap <S-r> :w<Cr>:!tectonic "%"<Cr>
 autocmd FileType html nnoremap <S-r> :w<Cr>:silent !firefox % &<Cr>
 autocmd FileType c nnoremap <S-r> :w<Cr>:!gcc % && ./a.out<Cr>
 autocmd FileType cpp nnoremap <S-r> :w<Cr>:!g++ $(ls %:h/*.cpp) && ./a.out<Cr>
 autocmd FileType c nnoremap <S-r> :w<Cr>:!gcc $(ls %:h/*.c) && ./a.out<Cr>
+autocmd FileType markdown nnoremap <S-r> :w<Cr>
+autocmd FileType asm nnoremap <S-r> :w<Cr>:!nasm -f elf64 % -o hello.o && ld hello.o -o hello && ./hello && echo "Done"<Cr>
+autocmd FileType python nnoremap <S-r> :w<Cr>:!python3 -i %<Cr>
+
+
+" General autocmd that checks for a Makefile in the current directory and binds <S-r> to 'make' if found.
+autocmd BufRead,BufNewFile * if filereadable("Makefile") || filereadable("makefile") | nnoremap <S-r> :w<Cr>:!make && read -p $?Done<Cr> | endif
 
 " Execute arbitrary vim commands in file
 " Obviously this is dangerous - only use on your own files
