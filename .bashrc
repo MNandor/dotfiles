@@ -8,3 +8,9 @@
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
 PS1='[\u@\h \W]\$ '
+
+
+# Quick scripting
+alias pp="vim /tmp/r.py"
+alias bb="vim /tmp/r.sh"
+alias kk="vim /tmp/r.kts"
