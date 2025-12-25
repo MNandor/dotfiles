@@ -14,3 +14,9 @@ PS1='[\u@\h \W]\$ '
 alias pp="vim /tmp/r.py"
 alias bb="vim /tmp/r.sh"
 alias kk="vim /tmp/r.kts"
+
+# Exits
+alias ":q"="exit"
+alias ":q!"="exit"
+alias "ZQ"="exit"
+alias quit="exit"
