@@ -53,3 +53,32 @@ alias watch="watch --color"
 alias vbash='vim ~/.bashrc && source ~/.bashrc'
 alias vvimrc='vim ~/.vimrc'
 alias vqtile='vim ~/.config/qtile/config.py'
+
+
+# Git
+alias ga="git add ."
+alias gap="git add -p ."
+alias gc="git commit -m"
+alias gco="git checkout"
+alias gce=gco
+alias gcb="git checkout -b"
+alias gb="git branch | fzf | xargs git checkout"
+alias gac="git add . && git commit -m"
+alias gs="git status"
+alias gw="git switch"
+alias gd="git diff -w"
+alias gdc="git diff -w --cached"
+alias gdw="git diff --color-words"
+alias gdcw="git diff --color-words --cached"
+alias gdwc=gdcw
+alias amend="git commit --amend"
+alias gl="git log --oneline"
+alias gla="gl --graph --all"
+alias gln="git log --oneline --name-only"
+alias gmt="git mergetool"
+alias grs="git restore"
+alias grss="grs --staged"
+alias grsc=grss
+alias grc="git rebase --continue"
+alias gitroot='cd $(git rev-parse --show-toplevel)'
+alias githublink='sed -e "s#https://github.com/#git@github.com:#" -e "s/^.*$/git remote set-url origin \0.git/"'
