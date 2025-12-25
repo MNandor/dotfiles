@@ -20,3 +20,8 @@ alias ":q"="exit"
 alias ":q!"="exit"
 alias "ZQ"="exit"
 alias quit="exit"
+
+# Edit Common Files
+alias vbash='vim ~/.bashrc && source ~/.bashrc'
+alias vvimrc='vim ~/.vimrc'
+alias vqtile='vim ~/.config/qtile/config.py'
