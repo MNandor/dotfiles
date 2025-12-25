@@ -35,6 +35,20 @@ alias ":q!"="exit"
 alias "ZQ"="exit"
 alias quit="exit"
 
+# Shadow common commands with reasonable defaults
+alias grep="grep -i --color=auto"
+alias ls='ls --color=always -lh --group-directories-first'
+alias diff="diff --color"
+alias powertop='sudo powertop'
+alias tune='sudo powertop --auto-tune'
+alias shutdown='shutdown now'
+alias suspend='systemctl suspend && slock'
+alias rm='rm -i'
+alias ifind="find . -iname"
+alias syu='sudo pacman -Syu'
+alias xclip='xclip -sel clip'
+alias watch="watch --color"
+
 # Edit Common Files
 alias vbash='vim ~/.bashrc && source ~/.bashrc'
 alias vvimrc='vim ~/.vimrc'
