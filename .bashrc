@@ -55,6 +55,18 @@ alias vvimrc='vim ~/.vimrc'
 alias vqtile='vim ~/.config/qtile/config.py'
 
 
+# Ranger (cd to exit position)
+ranger_cd() {
+	# Copied from: /usr/share/doc/ranger/examples/shell_automatic_cd.sh
+	temp_file="$(mktemp -t "ranger_cd.XXXXXXXXXX")"
+	ranger --choosedir="$temp_file" -- "${@:-$PWD}"
+	if chosen_dir="$(cat -- "$temp_file")" && [ -n "$chosen_dir" ] && [ "$chosen_dir" != "$PWD" ]; then
+		cd -- "$chosen_dir"
+	fi
+	rm -f -- "$temp_file"
+}
+alias ranger="ranger_cd"
+
 # Git
 alias ga="git add ."
 alias gap="git add -p ."
