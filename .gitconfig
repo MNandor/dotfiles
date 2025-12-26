@@ -6,7 +6,12 @@
 [alias]
 	ignore = update-index --assume-unchanged
 	unignore = update-index --no-assume-unchanged
+	stash = stash -u
 [merge]
 	tool = vimdiff
 [mergetool]
 	keepBackup = false
+[stash]
+	showincludeUntracked = true
+	showpatch = true
+	index = true
