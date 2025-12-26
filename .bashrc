@@ -82,3 +82,8 @@ alias grsc=grss
 alias grc="git rebase --continue"
 alias gitroot='cd $(git rev-parse --show-toplevel)'
 alias githublink='sed -e "s#https://github.com/#git@github.com:#" -e "s/^.*$/git remote set-url origin \0.git/"'
+
+# Up Arrow
+bind '"\e[A": history-search-backward'
+# Down Arrow
+bind '"\e[B": history-search-forward'
