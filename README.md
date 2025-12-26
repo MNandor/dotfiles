@@ -37,3 +37,10 @@ stow --adopt --target=$HOME .
 git restore .
 ```
 
+# Git Log is the Documentation
+
+I try to make each commit as small and topical as possible.
+Just `git blame` each file to find out *why* I added a particular change.
+
+Commits do not have any tagging like "[bashrc] added aliases".
+Instead, most commits change only one file, so you can filter out irrelevant commits with `git log .bashrc`.
