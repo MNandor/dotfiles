@@ -49,6 +49,26 @@ alias syu='sudo pacman -Syu'
 alias xclip='xclip -sel clip'
 alias watch="watch --color"
 
+# True aliases
+alias ..='cd ..'
+alias ...='cd ../..'
+alias py="python3"
+alias python="python3"
+alias pip="pip3"
+alias bc='calc'
+alias table='column'
+alias clcd='cd ~ && clear'
+alias zipthisfolder='zip -r zipname *'
+alias howmuchspaceisonmydrives='df -h'
+alias howmuchspaceisonmybtrfs='sudo btrfs fi df /'
+alias vanenet='watch ping -c 1 example.com'
+alias weather='curl wttr.in'
+alias bctl="bluetoothctl"
+alias locate='locate -i'
+alias mnt='sudo mount /dev/sda1 /mnt'
+alias umnt='sudo umount /mnt'
+alias cal="cal --monday"
+
 # Edit Common Files
 alias vbash='vim ~/.bashrc && source ~/.bashrc'
 alias vvimrc='vim ~/.vimrc'
