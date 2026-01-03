@@ -97,13 +97,17 @@ alias gcb="git checkout -b"
 alias gb="git branch | fzf | xargs git checkout"
 alias gac="git add . && git commit -m"
 alias gs="git status"
+alias gso="git show"
+alias gsh"git show"
 alias gw="git switch"
 alias gd="git diff -w"
 alias gdc="git diff -w --cached"
 alias gdw="git diff --color-words"
 alias gdcw="git diff --color-words --cached"
+alias gds="git diff --stat"
 alias gdwc=gdcw
 alias amend="git commit --amend"
+alias ammend="git commit --amend"
 alias gl="git log --oneline"
 alias gla="gl --graph --all"
 alias gln="git log --oneline --name-only"
@@ -114,6 +118,7 @@ alias grsc=grss
 alias grc="git rebase --continue"
 alias gitroot='cd $(git rev-parse --show-toplevel)'
 alias githublink='sed -e "s#https://github.com/#git@github.com:#" -e "s/^.*$/git remote set-url origin \0.git/"'
+alias gps="git pull --recurse-submodules"
 
 # Up Arrow
 bind '"\e[A": history-search-backward'
