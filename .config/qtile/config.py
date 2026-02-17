@@ -64,6 +64,24 @@ keys = [
 	),
 	Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
 	Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
+
+	# Sound and Brightness
+	Key([], "XF86AudioMute", lazy.spawn("pactl set-sink-mute @DEFAULT_SINK@ toggle")),
+	Key([], "XF86AudioLowerVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ -10%")),
+	Key([], "XF86AudioRaiseVolume", lazy.spawn("pactl set-sink-volume @DEFAULT_SINK@ +10%")),
+	Key([], "XF86MonBrightnessUp", lazy.spawn("brightnessctl set +20")),
+	Key([], "XF86MonBrightnessDown", lazy.spawn("brightnessctl set 20-")),
+	Key([], "XF86AudioPlay", lazy.spawn('cmus-remote -u')),
+	Key(['mod2'], "XF86AudioPause", lazy.spawn('cmus-remote -u')),
+	Key([], "XF86AudioNext", lazy.spawn('cmus-remote --next')),
+	Key([], "XF86AudioPrev", lazy.spawn('cmus-remote --prev')),
+	Key([], "Print", lazy.spawn("flameshot full --clipboard")),
+	Key([ctrl], "Print", lazy.spawn("flameshot full")),
+	Key([shift], "Print", lazy.spawn("flameshot gui")),
+
+	# Screen Lock
+	# Note: win-l is already is use
+	Key([win], "o", lazy.spawn("slock")),
 ]
 
 # Add key bindings to switch VTs in Wayland.
