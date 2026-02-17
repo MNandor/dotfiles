@@ -164,17 +164,41 @@ screens = [
 		# x11_drag_polling_rate = 60,
 	),
 ]
+def focus_window_under_mouse(qtile):
+	x, y = qtile.core.get_mouse_position()
+	screen = qtile.current_screen
+
+	for win in screen.group.windows:
+		if win.x <= x <= win.x + win.width and \
+		   win.y <= y <= win.y + win.height:
+			screen.group.focus(win, warp=False)
+			return win.get_position()
+	return qtile.current_window.get_position()
+
+
 
 # Drag floating layouts.
 mouse = [
-	Drag([mod], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
-	Drag([mod], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
-	Click([mod], "Button2", lazy.window.bring_to_front()),
+	Drag([win], "Button1", lazy.window.set_position_floating(),
+		 start=lazy.window.get_position()),
+
+# Move tiling. Keep but change to Button2
+# 	Drag([win], "Button2", lazy.window.set_position(), start=lazy.window.get_position()),
+
+Drag(
+	[win], "Button2",
+	lazy.window.set_position(),
+	start=lazy.function(focus_window_under_mouse)
+),
+
+	Drag([win], "Button3", lazy.window.set_size_floating(),
+		 start=lazy.window.get_size()),
+	Click([win], "Button2", lazy.window.bring_to_front()),
 ]
 
 dgroups_key_binder = None
 dgroups_app_rules = []  # type: list
-follow_mouse_focus = True
+follow_mouse_focus = False
 bring_front_click = False
 floats_kept_above = True
 cursor_warp = False
