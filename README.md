@@ -44,3 +44,7 @@ Just `git blame` each file to find out *why* I added a particular change.
 
 Commits do not have any tagging like "[bashrc] added aliases".
 Instead, most commits change only one file, so you can filter out irrelevant commits with `git log .bashrc`.
+
+## Wotkflow
+
+Note to self: when you start with a new file, first make a commit that just adds the default unconfigured config file (whatever comes default with your OS at the time) and make modifications to it. Done so with qtile and .bashrc already.
