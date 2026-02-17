@@ -14,6 +14,30 @@ shift = 'shift'
 tilde = '/home/n'
 terminal = guess_terminal()
 
+#  _____                 _   _                 
+# |  ___|   _ _ __   ___| |_(_) ___  _ __  ___ 
+# | |_ | | | | '_ \ / __| __| |/ _ \| '_ \/ __|
+# |  _|| |_| | | | | (__| |_| | (_) | | | \__ \
+# |_|   \__,_|_| |_|\___|\__|_|\___/|_| |_|___/
+
+@lazy.function
+def float_to_front(qtile):
+	"""
+	Bring all floating windows of the group to front
+	https://github.com/qtile/qtile/issues/974 todo
+	"""
+	
+	focused_window = qtile.current_window
+
+# 	logger.warning(str(dir(qtile)))
+	for window in qtile.current_group.windows:
+		if window.floating:
+			window.cmd_bring_to_front()
+			window.cmd_focus()
+
+
+	if focused_window and focused_window.floating:
+		focused_window.cmd_bring_to_front()
 keys = [
 	# A list of available commands that can be bound to keys can be found
 	# at https://docs.qtile.org/en/latest/manual/config/lazy.html
@@ -82,6 +106,9 @@ keys = [
 	# Screen Lock
 	# Note: win-l is already is use
 	Key([win], "o", lazy.spawn("slock")),
+
+	Key([alt, "control"], 'tab', float_to_front, desc="Floating windows to front"),
+	Key([win, "control"], 'tab', float_to_front, desc="Floating windows to front"),
 ]
 
 # Add key bindings to switch VTs in Wayland.
