@@ -195,6 +195,45 @@ reconfigure_screens = True
 # focus, should we respect this or not?
 auto_minimize = True
 
+#  ____  _             _               
+# / ___|| |_ __ _ _ __| |_ _   _ _ __  
+# \___ \| __/ _` | '__| __| | | | '_ \ 
+#  ___) | || (_| | |  | |_| |_| | |_) |
+# |____/ \__\__,_|_|   \__|\__,_| .__/ 
+#                               |_|    
+
+import os
+import subprocess
+from libqtile import hook
+
+def spo(a):
+	try:
+		subprocess.Popen(a)
+	except:
+		pass
+
+@hook.subscribe.startup_once
+def autostart():
+	spo(['albert'])
+	spo(['xset', 'r', 'rate', '300', '50'])
+	spo(['syncthing']) 
+	spo(['ibus-daemon'])
+	spo(['picom'])
+	spo(['copyq']) 
+	spo(['flameshot']) 
+	spo(['libinput-gestures']) 
+	spo(['/usr/bin/lxpolkit'])
+
+
+@hook.subscribe.client_new
+def fix_group(window):
+	if "albert" in window.get_wm_class(): 
+		group = qtile.current_group
+		if window.group != group:
+			window.togroup(group.name)
+		window.cmd_bring_to_front()
+		window.cmd_focus()
+
 # When using the Wayland backend, this can be used to configure input devices.
 wl_input_rules = None
 
