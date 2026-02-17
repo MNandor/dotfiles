@@ -31,6 +31,7 @@ keys = [
 	Key([win, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
 	Key([win, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
 	Key([win, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
+
 	# Grow windows. If current window is on the edge of screen and direction
 	# will be to screen edge - window would shrink.
 	Key([win, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
@@ -43,16 +44,18 @@ keys = [
 	# Split = all windows displayed
 	# Unsplit = 1 window displayed, like Max layout, but still with
 	# multiple stack panes
-	Key(
-		[mod, "shift"],
-		"Return",
-		lazy.layout.toggle_split(),
-		desc="Toggle between split and unsplit sides of stack",
-	),
+	Key([win, "shift"], "Tab", lazy.layout.toggle_split(), desc="Toggle between split and unsplit sides of stack"),
 	Key([mod], "Return", lazy.spawn(terminal), desc="Launch terminal"),
 	# Toggle between different layouts as defined below
-	Key([mod], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
-	Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
+	Key([win], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+
+	Key([win], "c", lazy.window.kill(), desc="Kill focused window"),
+	Key([win], "f", lazy.window.toggle_fullscreen(), desc="Toggle fullscreen"),
+	Key([win, shift], "f", lazy.window.toggle_floating(), desc="Float focused window"),
+
+	Key([win, "control"], "r", lazy.restart(), desc="Restart Qtile"),
+	Key([win, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
+	Key([win], "c", lazy.window.kill(), desc="Kill focused window"),
 	Key(
 		[mod],
 		"f",
@@ -60,8 +63,6 @@ keys = [
 		desc="Toggle fullscreen on the focused window",
 	),
 	Key([mod], "t", lazy.window.toggle_floating(), desc="Toggle floating on the focused window"),
-	Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
-	Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 	Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
 ]
 
