@@ -56,7 +56,6 @@ keys = [
 
 	Key([win, "control"], "r", lazy.restart(), desc="Restart Qtile"),
 	Key([win, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-	Key([win], "c", lazy.window.kill(), desc="Kill focused window"),
 	Key(
 		[mod],
 		"f",
