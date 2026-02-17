@@ -7,6 +7,7 @@ from libqtile.lazy import lazy
 from libqtile.utils import guess_terminal
 
 win = "mod4"
+mod=win
 alt = "mod1"
 ctrl = 'control'
 shift = 'shift'
