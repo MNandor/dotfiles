@@ -177,25 +177,20 @@ extension_defaults = widget_defaults.copy()
 logo = os.path.join(os.path.dirname(libqtile.resources.__file__), "logo.png")
 bottomBar=bar.Bar(
 	[
-		widget.CurrentLayout(),
-		widget.GroupBox(),
-		widget.Prompt(),
-		widget.WindowName(),
-		widget.Chord(
-			chords_colors={
-				"launch": ("#ff0000", "#ffffff"),
-			},
-			name_transform=lambda name: name.upper(),
-		),
-		widget.TextBox("default config", name="default"),
-		widget.TextBox("Press &lt;M-r&gt; to spawn", foreground="#d75f5f"),
+		widget.WindowCount(show_zero=True),
+		widget.CurrentLayout(width=90, fmt='{}-----'),
+		widget.GroupBox(this_current_screen_border='c72828', disable_drag=True, visible_groups='1234'),
+		widget.WindowName(mouse_callbacks={'Button1':lazy.window.opacity(1), 'Button3': lazy.window.opacity(0.5)}),
 		# NB Systray is incompatible with Wayland, consider using StatusNotifier instead
 		# widget.StatusNotifier(),
+		widget.Wttr(location={'London':'Mmm'}, format='%t %C', foreground='ff8f00'),
 		widget.Systray(),
-		widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-		widget.QuickExit(),
+
+		widget.Clock(format='%b %d %a', foreground='#FF8f8f'),
+		widget.Clock(format='%I:%M %p', foreground='#FF3f3f'),
+		widget.QuickExit(countdown_start=2400),
 	],
-	24,
+	40,
 	# border_width=[2, 0, 2, 0],  # Draw top and bottom borders
 	# border_color=["ff00ff", "000000", "ff00ff", "000000"]  # Borders are magenta
 )
