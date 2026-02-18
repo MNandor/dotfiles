@@ -39,6 +39,12 @@ function CycleNumbers()
 endfunction
 
 :nnoremap <C-n> :call CycleNumbers()<Cr>
+
+" Tab Indenting
+:nnoremap <Tab> >>
+:vnoremap <Tab> >gv
+:nnoremap <S-Tab> <<
+:vnoremap <S-Tab> <gv
 " Cursor shape. Works in xfce4-terminal
 let &t_VS = "\<Esc>[2 q" " normal mode, block
 let &t_EI = "\<Esc>[2 q" " return to normal mode, block
