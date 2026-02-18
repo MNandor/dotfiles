@@ -15,6 +15,11 @@ set linebreak
 set breakindent
 set nomodeline
 set nrformats+=unsigned
+" Move line up/down
+:nnoremap <C-k> <Up>ddp<Up>
+:nnoremap <C-j> ddp
+:vnoremap <C-k> :m-2<CR>gv
+:vnoremap <C-j> :m'>+<CR>gv
 " Swap between side-by-side windows and buffers similar to `gt` swapping between tabs
 :nnoremap gw <C-w>w
 :nnoremap <silent> gb :w<Cr>:bn<Cr>
