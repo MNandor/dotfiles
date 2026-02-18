@@ -15,6 +15,9 @@ set linebreak
 set breakindent
 set nomodeline
 set nrformats+=unsigned
+" Swap between side-by-side windows and buffers similar to `gt` swapping between tabs
+:nnoremap gw <C-w>w
+:nnoremap <silent> gb :w<Cr>:bn<Cr>
 " Toggle numbers
 function CycleNumbers()
 	" Cycle between: no number, both, absolute-only
