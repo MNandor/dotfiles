@@ -45,6 +45,8 @@ endfunction
 :vnoremap <Tab> >gv
 :nnoremap <S-Tab> <<
 :vnoremap <S-Tab> <gv
+" To go with ZZ and ZQ shortcuts
+:nnoremap ZS :w<Cr>
 " Cursor shape. Works in xfce4-terminal
 let &t_VS = "\<Esc>[2 q" " normal mode, block
 let &t_EI = "\<Esc>[2 q" " return to normal mode, block
