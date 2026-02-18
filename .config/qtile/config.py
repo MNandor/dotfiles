@@ -125,7 +125,13 @@ for vt in range(1, 8):
 	)
 
 
-groups = [Group(i) for i in "123456789"]
+groups = [
+	Group('1', matches=[]),
+	Group('2', matches=[]),
+	Group('3', matches=[]),
+	Group('4', matches=[]),
+	Group('5', matches=[]),
+]
 
 for i in groups:
 	keys.extend(
