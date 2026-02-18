@@ -59,3 +59,5 @@ autocmd VimLeave * let &t_me="\<Esc>[5 q" " on exit, return terminal to |
 " Replay macro quicker
 noremap Q @@
 let mapleader=' '
+" Don't lose clipboard on exit
+autocmd VimLeave,VimSuspend * call system("xsel -ib", getreg('+'))
