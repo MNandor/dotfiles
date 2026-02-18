@@ -8,7 +8,7 @@ export QT_IM_MODULE=ibus
 # If not running interactively, don't do anything
 [[ $- != *i* ]] && return
 
- Single-letter shortcuts
+# Single-letter shortcuts
 alias g="git"
 alias p="python3"
 alias r="ranger"
@@ -98,7 +98,7 @@ alias gb="git branch | fzf | xargs git checkout"
 alias gac="git add . && git commit -m"
 alias gs="git status"
 alias gso="git show"
-alias gsh"git show"
+alias gsh="git show"
 alias gw="git switch"
 alias gd="git diff -w"
 alias gdc="git diff -w --cached"
