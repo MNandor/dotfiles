@@ -293,7 +293,7 @@ def autostart():
 	spo(['xset', 'r', 'rate', '300', '50'])
 	spo(['syncthing']) 
 	spo(['ibus-daemon'])
-	spo(['picom'])
+	# spo(['picom'])
 	spo(['copyq']) 
 	spo(['flameshot']) 
 	spo(['libinput-gestures']) 
