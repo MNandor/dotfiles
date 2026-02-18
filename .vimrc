@@ -15,6 +15,22 @@ set linebreak
 set breakindent
 set nomodeline
 set nrformats+=unsigned
+" Toggle numbers
+function CycleNumbers()
+	" Cycle between: no number, both, absolute-only
+	if ((&nu == 0) && (&rnu == 0))
+		set nu
+		set rnu
+	elseif ((&nu == 1) && (&rnu == 1))
+		set rnu!
+	elseif ((&nu == 1) && (&rnu == 0))
+		set nu!
+	else
+		set rnu!
+	endif
+endfunction
+
+:nnoremap <C-n> :call CycleNumbers()<Cr>
 " Cursor shape. Works in xfce4-terminal
 let &t_VS = "\<Esc>[2 q" " normal mode, block
 let &t_EI = "\<Esc>[2 q" " return to normal mode, block
