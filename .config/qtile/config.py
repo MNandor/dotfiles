@@ -133,29 +133,15 @@ groups = [
 	Group('5', matches=[]),
 ]
 
-for i in groups:
-	keys.extend(
-		[
-			# mod + group number = switch to group
-			Key(
-				[mod],
-				i.name,
-				lazy.group[i.name].toscreen(),
-				desc=f"Switch to group {i.name}",
-			),
-			# mod + shift + group number = switch to & move focused window to group
-			Key(
-				[mod, "shift"],
-				i.name,
-				lazy.window.togroup(i.name, switch_group=True),
-				desc=f"Switch to & move focused window to group {i.name}",
-			),
-			# Or, use below if you prefer not to switch to that group.
-			# # mod + shift + group number = move focused window to group
-			# Key([mod, "shift"], i.name, lazy.window.togroup(i.name),
-			#	 desc="move focused window to group {}".format(i.name)),
-		]
-	)
+for num, i in enumerate(groups):
+	keys.extend([
+		# win + letter of group = switch to group
+		Key([win], i.name, lazy.group[i.name].toscreen(),
+			desc="Switch to group {}".format(i.name)),
+
+		# win + shift + letter of group = move focused window to group (do not switch to group though)
+		Key([win, "shift"], i.name, lazy.window.togroup(i.name, switch_group=False), desc="move focused window to group {}".format(i.name)),
+	])
 
 layouts = [
 	layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
