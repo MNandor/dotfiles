@@ -56,4 +56,6 @@ let &t_SR = "\<Esc>[4 q" " replace mode, underline
 let &t_SI = "\<Esc>[5 q" " insert mode, blinking |
 autocmd VimLeave * let &t_me="\<Esc>[5 q" " on exit, return terminal to |
 
+" Replay macro quicker
+noremap Q @@
 let mapleader=' '
