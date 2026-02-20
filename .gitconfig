@@ -17,3 +17,5 @@
 	showincludeUntracked = true
 	showpatch = true
 	index = true
+[blame]
+	date = format:%Y-%m-%d
