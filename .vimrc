@@ -95,3 +95,51 @@ nnoremap <C-e> "ryiw:%s/<C-r>r//gc<Left><Left><Left>
 
 " Visual mode: Yank selection into register r and prep the substitute command
 vnoremap <C-e> "ry:%s/<C-r>r//gc<Left><Left><Left>
+
+
+
+augroup GitMergeLook
+    autocmd!
+    " VimEnter fires after everything is loaded and the UI is ready
+    autocmd VimEnter * if &diff | call SetMergeMode() | endif
+augroup END
+
+function! GetGitInfo(type)
+    " Get current branch (LOCAL)
+    if a:type ==# 'local'
+        return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+    " Get the branch being merged (REMOTE)
+    elseif a:type ==# 'remote'
+        let l:remote = system("git name-rev --name-only MERGE_HEAD 2>/dev/null | tr -d '\n'")
+        if v:shell_error || l:remote ==# '' | let l:remote = 'MERGE_OBJ' | endif
+        return l:remote
+    endif
+    return ''
+endfunction
+
+function! SetMergeMode()
+    set termguicolors
+
+    highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=#5ff75f
+    highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=#ff5f5f
+    highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=#5f5fff
+    highlight DiffText   cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=#ffff5f
+
+    let l:loc_br = GetGitInfo('local')
+    let l:rem_br = GetGitInfo('remote')
+
+    " Window 1: LOCAL (Our current branch)
+    call setwinvar(1, '&statusline', '%#DiffAdd#  LOCAL  %* %#CursorLine#  ' . l:loc_br . '  %*')
+    
+    " Window 2: BASE (Common Ancestor)
+    call setwinvar(2, '&statusline', '%#DiffText#  BASE  %*')
+    
+    " Window 3: REMOTE (The incoming change)
+    call setwinvar(3, '&statusline', '%#DiffDelete#  REMOTE  %* %#CursorLine#  ' . l:rem_br . '  %*')
+    
+    " Window 4: MERGED (The result)
+    call setwinvar(4, '&statusline', '%#Visual#  MERGED  %* %f %m')
+
+    set laststatus=2
+    highlight VertSplit gui=none guifg=#444444 guibg=NONE
+endfunction
