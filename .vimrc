@@ -74,3 +74,9 @@ nnoremap <silent> <leader>gb :Git blame<CR>
 noremap Q @@
 " Don't lose clipboard on exit
 autocmd VimLeave,VimSuspend * call system("xsel -ib", getreg('+'))
+
+" Normal mode: Yank inner word into register r and prep the substitute command
+nnoremap <C-e> "ryiw:%s/<C-r>r//gc<Left><Left><Left>
+
+" Visual mode: Yank selection into register r and prep the substitute command
+vnoremap <C-e> "ry:%s/<C-r>r//gc<Left><Left><Left>
