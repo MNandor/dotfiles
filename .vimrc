@@ -123,7 +123,7 @@ function! SetMergeMode()
     highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=#5ff75f
     highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=#ff5f5f
     highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=#5f5fff
-    highlight DiffText   cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=#ffff5f
+    highlight DiffText   cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=#1f1fbf
 
     let l:loc_br = GetGitInfo('local')
     let l:rem_br = GetGitInfo('remote')
