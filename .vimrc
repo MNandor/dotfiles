@@ -104,44 +104,52 @@ augroup GitMergeLook
     autocmd VimEnter * if &diff | call SetMergeMode() | endif
 augroup END
 
+augroup GitMergeLook
+    autocmd!
+    " Trigger on VimEnter to ensure the UI is ready
+    autocmd VimEnter * if &diff | call SetMergeMode() | endif
+augroup END
+
 function! GetGitInfo(type)
-    " Get current branch (LOCAL)
+    " 'trim' is a built-in Vim function, faster than piping to 'tr'
     if a:type ==# 'local'
-        return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-    " Get the branch being merged (REMOTE)
+        return trim(system("git rev-parse --abbrev-ref HEAD 2>/dev/null"))
     elseif a:type ==# 'remote'
-        let l:remote = system("git name-rev --name-only MERGE_HEAD 2>/dev/null | tr -d '\n'")
-        if v:shell_error || l:remote ==# '' | let l:remote = 'MERGE_OBJ' | endif
-        return l:remote
+        let l:remote = trim(system("git name-rev --name-only MERGE_HEAD 2>/dev/null"))
+        return (v:shell_error || l:remote ==# '') ? 'REMOTE' : l:remote
     endif
     return ''
 endfunction
 
 function! SetMergeMode()
+    " --- PHASE 1: Always apply colors for any diff ---
     set termguicolors
+    highlight DiffAdd    gui=none guifg=bg guibg=#5ff75f
+    highlight DiffDelete gui=none guifg=bg guibg=#ff5f5f
+    highlight DiffChange gui=none guifg=bg guibg=#5f5fff
+    highlight DiffText   gui=none guifg=bg guibg=#1f1fbf
+    highlight VertSplit  gui=none guifg=#444444 guibg=NONE
 
-    highlight DiffAdd    cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=#5ff75f
-    highlight DiffDelete cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=#ff5f5f
-    highlight DiffChange cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=#5f5fff
-    highlight DiffText   cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=bg guibg=#1f1fbf
+    " --- PHASE 2: Only apply labels if it's a 4-way Git Merge ---
+    " filereadable is nearly instant compared to calling git
+    if filereadable('.git/MERGE_HEAD') && winnr('$') >= 4
+        let l:loc_br = GetGitInfo('local')
+        let l:rem_br = GetGitInfo('remote')
 
-    let l:loc_br = GetGitInfo('local')
-    let l:rem_br = GetGitInfo('remote')
+        call setwinvar(1, '&statusline', '%#DiffAdd#  LOCAL  %* ' . l:loc_br)
+        call setwinvar(2, '&statusline', '%#DiffText#  BASE  %*')
+        call setwinvar(3, '&statusline', '%#DiffDelete#  REMOTE  %* ' . l:rem_br)
+        call setwinvar(4, '&statusline', '%#Visual#  MERGED  %* %f %m')
+        
+        set laststatus=2
+        
+        " Jump to the MERGED window (bottom) automatically
+        4wincmd w
+    endif
 
-    " Window 1: LOCAL (Our current branch)
-    call setwinvar(1, '&statusline', '%#DiffAdd#  LOCAL  %* %#CursorLine#  ' . l:loc_br . '  %*')
-    
-    " Window 2: BASE (Common Ancestor)
-    call setwinvar(2, '&statusline', '%#DiffText#  BASE  %*')
-    
-    " Window 3: REMOTE (The incoming change)
-    call setwinvar(3, '&statusline', '%#DiffDelete#  REMOTE  %* %#CursorLine#  ' . l:rem_br . '  %*')
-    
-    " Window 4: MERGED (The result)
-    call setwinvar(4, '&statusline', '%#Visual#  MERGED  %* %f %m')
-
-    set laststatus=2
-    highlight VertSplit gui=none guifg=#444444 guibg=NONE
+    " --- PHASE 3: Clean up terminal artifacts ---
+    " This wipes away the ^[[2;2R garbage from the screen
+    silent! redraw!
 endfunction
 
 
