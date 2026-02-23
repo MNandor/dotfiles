@@ -91,7 +91,7 @@ alias ranger="ranger_cd"
 # Git
 alias ga="git add ."
 alias gap="git add -p ."
-alias gc="git commit -m"
+# alias gc="git commit -m" # has function
 alias gco="git checkout"
 alias gce=gco
 alias gcb="git checkout -b"
@@ -125,3 +125,5 @@ alias gps="git pull --recurse-submodules"
 bind '"\e[A": history-search-backward'
 # Down Arrow
 bind '"\e[B": history-search-forward'
+
+[ -f ~/.bash_git.sh ] && source ~/.bash_git.sh
