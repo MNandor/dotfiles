@@ -10,7 +10,7 @@ export EDITOR="vim"
 [[ $- != *i* ]] && return
 
 # Single-letter shortcuts
-alias g="git"
+# alias g="git" # see .bash_git.sh
 alias p="python3"
 alias r="ranger"
 alias t="task"
