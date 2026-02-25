@@ -143,3 +143,12 @@ function! SetMergeMode()
     set laststatus=2
     highlight VertSplit gui=none guifg=#444444 guibg=NONE
 endfunction
+
+
+function! FindUsages(symbol)                                                                                           
+  let cmd = 'rg -l ' . shellescape(expand('%:t:r')) . ' --type kotlin --type java | xargs rg ' . shellescape(a:symbol) .  ' -C 5'
+  execute 'terminal bash -c "' . escape(cmd, '"') . '"'
+endfunction
+
+nnoremap <C-b> :call FindUsages(expand('<cword>'))<CR>
+vnoremap <C-b> "ry:call FindUsages(@r)<CR>

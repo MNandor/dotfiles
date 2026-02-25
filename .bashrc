@@ -177,3 +177,14 @@ taskcurrentcontext(){
 }
 
 alias tiddly="tiddlywiki ~/Tiddly/ --listen"
+
+# first argument: the file we look for has to reference the first argument.
+# this is mostly for import statements
+# note that the file that defines the symbol typically references itself at least in class name
+# don't include .kt or .java in first argument
+#
+# second argument: the symbol to search for
+findusages() {                                                                                                           
+    rg -l "$1" --type kotlin --type java | xargs rg "$2" -C 5                                                              
+  }       
+
