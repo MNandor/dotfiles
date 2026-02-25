@@ -86,3 +86,8 @@ _complete_git_hashes() {
 
 # Apply to the standard git command
 complete -F _complete_git_hashes git
+
+thisisareferencecommit(){
+	[[ -z "$1" ]] && echo "error, give name" && return
+	git tag n-references/$1
+}
