@@ -66,6 +66,7 @@ call plug#begin()
 Plug 'markonm/traces.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'dhruvasagar/vim-table-mode'
+Plug 'tpope/vim-commentary'
 
 call plug#end()
 " :PlugInstall
@@ -75,6 +76,9 @@ call plug#end()
 let g:table_mode_corner='|'
 
 nnoremap <leader>tm TableMode <cr>
+
+nnoremap <C-/> :Commentary<CR>
+vnoremap <C-/> :Commentary<CR>gv
 
 
 nnoremap <silent> <leader>gb :Git blame<CR>
