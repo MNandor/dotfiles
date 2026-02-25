@@ -45,6 +45,13 @@ Just `git blame` each file to find out *why* I added a particular change.
 Commits do not have any tagging like "[bashrc] added aliases".
 Instead, most commits change only one file, so you can filter out irrelevant commits with `git log .bashrc`.
 
-## Wotkflow
+## Workflow
 
 Note to self: when you start with a new file, first make a commit that just adds the default unconfigured config file (whatever comes default with your OS at the time) and make modifications to it. Done so with qtile and .bashrc already.
+
+## On rebasing
+
+Since your local worktree depends on public, and public will receive changes, you frequently want to rebase onto public.
+You might also make a commit to the local tree and later decide it belongs on public. So you cherry-pick from public, then rebase local onto public.
+
+In both cases, check using `git diff` that you didn't lose any changes to merge conflicts.
