@@ -69,6 +69,7 @@ alias locate='locate -i'
 alias mnt='sudo mount /dev/sda1 /mnt'
 alias umnt='sudo umount /mnt'
 alias cal="cal --monday"
+alias hgrep="history | grep"
 
 # Edit Common Files
 alias vbash='vim ~/.bashrc && source ~/.bashrc'
