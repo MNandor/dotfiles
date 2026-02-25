@@ -140,3 +140,18 @@ bind '"\e[A": history-search-backward'
 bind '"\e[B": history-search-forward'
 
 [ -f ~/.bash_git.sh ] && source ~/.bash_git.sh
+flameshotwindow() {
+    # Prompt to click a window and get its geometry
+    local info W H X Y
+
+    info=$(xwininfo -stats)
+
+    # Extract geometry
+    W=$(echo "$info" | awk '/Width:/ {print $2}')
+    H=$(echo "$info" | awk '/Height:/ {print $2}')
+    X=$(echo "$info" | awk '/Absolute upper-left X:/ {print $4}')
+    Y=$(echo "$info" | awk '/Absolute upper-left Y:/ {print $4}')
+
+    # Launch Flameshot on the window region
+    flameshot gui --region $W,$H,$X,$Y
+}
