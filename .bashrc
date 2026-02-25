@@ -122,6 +122,18 @@ alias gitroot='cd $(git rev-parse --show-toplevel)'
 alias githublink='sed -e "s#https://github.com/#git@github.com:#" -e "s/^.*$/git remote set-url origin \0.git/"'
 alias gps="git pull --recurse-submodules"
 
+codecomment(){
+	figlet "$@" | sed 's#.*#// \0#' | xclip -sel clip
+	echo "Copied to clipboard!"
+}
+
+
+pythoncomment(){
+	figlet "$@" | sed 's/.*/# \0/' | xclip -sel clip
+	echo "Copied to clipboard!"
+}
+alias pycomment=pythoncomment
+
 # Up Arrow
 bind '"\e[A": history-search-backward'
 # Down Arrow
