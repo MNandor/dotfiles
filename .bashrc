@@ -155,3 +155,5 @@ flameshotwindow() {
     # Launch Flameshot on the window region
     flameshot gui --region $W,$H,$X,$Y
 }
+
+alias flameshotagain="flameshot gui --last-region"
