@@ -65,9 +65,16 @@ call plug#begin()
 
 Plug 'markonm/traces.vim'
 Plug 'tpope/vim-fugitive'
+Plug 'dhruvasagar/vim-table-mode'
 
 call plug#end()
 " :PlugInstall
+
+
+" https://github.com/dhruvasagar/vim-table-mode
+let g:table_mode_corner='|'
+
+nnoremap <leader>tm TableMode <cr>
 
 
 nnoremap <silent> <leader>gb :Git blame<CR>
