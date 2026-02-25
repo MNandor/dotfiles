@@ -91,3 +91,22 @@ thisisareferencecommit(){
 	[[ -z "$1" ]] && echo "error, give name" && return
 	git tag n-references/$1
 }
+
+
+demonstrate() {
+    local file="${1:-file.txt}"
+    
+    tmux new-session -d \; \
+      send-keys "watch cat $file" C-m \; \
+      split-window -v -p 50 \; \
+      send-keys "watch git diff --color=always $file" C-m \; \
+      split-window -h -p 50 \; \
+      send-keys "watch git diff --cached --color=always $file" C-m \; \
+      select-pane -t 0 \; \
+      split-window -h -p 66 \; \
+      send-keys "watch git show :$file" C-m \; \
+      split-window -h -p 50 \; \
+      send-keys "watch git show HEAD:$file" C-m \; \
+      select-pane -t 0 \; \
+      attach-session
+}
