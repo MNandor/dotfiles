@@ -78,11 +78,18 @@ _complete_git_hashes() {
     local cur="${COMP_WORDS[COMP_CWORD]}"
     local prev="${COMP_WORDS[COMP_CWORD-1]}"
 
-    # Only provide hash completion if the previous word was "show"
+    # 1. Custom logic for "git show"
     if [[ "$prev" == "show" ]] && [[ -f /tmp/git_last_hashes ]]; then
         COMPREPLY=( $(compgen -W "$(cat /tmp/git_last_hashes)" -- "$cur") )
+    else
+        # 2. Default behavior: provide filename completion
+        COMPREPLY=( $(compgen -f -- "$cur") )
     fi
 }
+
+# Apply with -o default to allow Bash to fall back to filenames 
+# if COMPREPLY is still empty.
+complete -F _complete_git_hashes -o default git
 
 # Apply to the standard git command
 complete -F _complete_git_hashes git
