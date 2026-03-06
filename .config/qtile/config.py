@@ -143,8 +143,8 @@ groups = [
 	Group('1', matches=[]),
 	Group('2', matches=[]),
 	Group('3', matches=[]),
-	Group('4', matches=[]),
-	Group('5', matches=[]),
+	Group('4', matches=[Match(wm_class='Logseq')]),
+	Group('5', matches=[Match(wm_class='KeePassXC')]),
 ]
 
 for num, i in enumerate(groups):
