@@ -111,6 +111,19 @@ keys = [
 	Key([win, "control"], 'tab', float_to_front, desc="Floating windows to front"),
 ]
 
+#  _                           _
+# | |    __ _ _   _ _ __   ___| |__
+# | |   / _` | | | | '_ \ / __| '_ \
+# | |__| (_| | |_| | | | | (__| | | |
+# |_____\__,_|\__,_|_| |_|\___|_| |_|
+
+keys += [
+	Key([win], "s", lazy.spawn(logseq), desc="Launch Logseq"),
+	# Key([win], "e", lazy.spawn(f'{terminal} -x ranger'), desc="Launch ranger"),
+	Key([win], "e", lazy.spawn("dolphin"), desc="Launch dolphin"),
+	Key([win, shift], "e", lazy.spawn("dolphin"), desc="Launch dolphin"),
+]
+
 # Add key bindings to switch VTs in Wayland.
 # We can't check qtile.core.name in default config as it is loaded before qtile is started
 # We therefore defer the check until the key binding is run by using .when(func=...)
