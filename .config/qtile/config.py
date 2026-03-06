@@ -13,6 +13,7 @@ ctrl = 'control'
 shift = 'shift'
 tilde = '/home/n'
 terminal = guess_terminal()
+logseq = 'logseq'
 
 #  _____                 _   _                 
 # |  ___|   _ _ __   ___| |_(_) ___  _ __  ___ 
@@ -297,6 +298,7 @@ def autostart():
 	spo(['flameshot']) 
 	spo(['libinput-gestures']) 
 	spo(['/usr/bin/lxpolkit'])
+	spo([logseq])
 
 
 @hook.subscribe.client_new
