@@ -155,6 +155,9 @@
   </action>
   <action id="Vcs.ShowMessageHistory" />
   <action id="Vcs.UpdateProject" />
+  <action id="VimPluginToggle">
+    <keyboard-shortcut first-keystroke="alt v" />
+  </action>
   <action id="android.deploy.ApplyChanges">
     <keyboard-shortcut first-keystroke="ctrl f10" />
   </action>
