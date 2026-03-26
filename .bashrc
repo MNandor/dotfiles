@@ -157,3 +157,9 @@ flameshotwindow() {
 }
 
 alias flameshotagain="flameshot gui --last-region"
+
+taskcurrentcontext(){
+	[ -z "$1" ] && echo "Usage: taskcurrentcontext <definition>" && return 1
+	yes | task context define current "$1" > /dev/null
+	task context current
+}
