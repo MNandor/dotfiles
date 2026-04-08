@@ -25,20 +25,18 @@ logseq = 'logseq'
 def float_to_front(qtile):
 	"""
 	Bring all floating windows of the group to front
-	https://github.com/qtile/qtile/issues/974 todo
 	"""
-	
 	focused_window = qtile.current_window
-
-# 	logger.warning(str(dir(qtile)))
+	
 	for window in qtile.current_group.windows:
 		if window.floating:
-			window.cmd_bring_to_front()
-			window.cmd_focus()
-
-
+			window.bring_to_front()
+			window.focus()
+			
 	if focused_window and focused_window.floating:
-		focused_window.cmd_bring_to_front()
+		focused_window.bring_to_front()
+		focused_window.focus()
+
 keys = [
 	# A list of available commands that can be bound to keys can be found
 	# at https://docs.qtile.org/en/latest/manual/config/lazy.html
