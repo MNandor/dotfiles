@@ -87,12 +87,10 @@ _complete_git_hashes() {
     fi
 }
 
-# Apply with -o default to allow Bash to fall back to filenames 
+# Apply with -o default to allow Bash to fall back to filenames
 # if COMPREPLY is still empty.
 complete -F _complete_git_hashes -o default git
-
-# Apply to the standard git command
-complete -F _complete_git_hashes git
+complete -F _complete_git_hashes -o default g
 
 thisisareferencecommit(){
 	[[ -z "$1" ]] && echo "error, give name" && return
