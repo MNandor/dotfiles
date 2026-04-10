@@ -89,32 +89,44 @@ ranger_cd() {
 }
 alias ranger="ranger_cd"
 
-# Git
+# Aliases are evaluated at execution time, meaning it doesn't matter when
+# .bash_git.sh is sourced. The important part is that it has g(), which is
+# a wrapper around git commands. Note that you can still call `git` normally.
+#
+# If you change to `alias G=git`, you get normal functionality in all these aliases
+# Define aliases with `G` if you want the wrapper's functionality, `git` otherwise
+#
+# The wrapper does things like expanding files after -- to **/Filename.* for easy matching
+# It also populates the bash autocomplete when calling `g log` (or `gl` variants) but not `git log`.
+# More might be added later
+
+alias G=g
+
 alias ga="git add ."
 alias gap="git add -p ."
 # alias gc="git commit -m" # has function
-alias gco="git checkout"
+alias gco="G checkout"
 alias gce=gco
 alias gcb="git checkout -b"
 alias gb="git branch | fzf | xargs git checkout"
 alias gac="git add . && git commit -m"
 alias gs="git status"
-alias gso="git show"
-alias gsh="git show"
+alias gso="G show"
+alias gsh="G show"
 alias gw="git switch"
-alias gd="git diff -w"
-alias gdc="git diff -w --cached"
-alias gdw="git diff --color-words"
-alias gdcw="git diff --color-words --cached"
-alias gds="git diff --stat"
+alias gd="G diff -w"
+alias gdc="G diff -w --cached"
+alias gdw="G diff --color-words"
+alias gdcw="G diff --color-words --cached"
+alias gds="G diff --stat"
 alias gdwc=gdcw
 alias amend="git commit --amend"
 alias ammend="git commit --amend"
-alias gl="git log --oneline"
+alias gl="G log --oneline"
 alias gla="gl --graph --all"
-alias gln="git log --oneline --name-only"
+alias gln="G log --oneline --name-only"
 alias gmt="git mergetool"
-alias grs="git restore"
+alias grs="G restore"
 alias grss="grs --staged"
 alias grsc=grss
 alias grc="git rebase --continue"
