@@ -175,3 +175,5 @@ taskcurrentcontext(){
 	yes | task context define current "$1" > /dev/null
 	task context current
 }
+
+alias tiddly="tiddlywiki ~/Tiddly/ --listen"
