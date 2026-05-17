@@ -23,7 +23,7 @@ cd dotfiles
 You will likely want a local tree so you don't always have to rebase the changes that only belong on one computer.
 
 ```bash
-git worktree add ../dotfiles-local
+git worktree add ../dotfiles-local -b local
 cd ../dotfiles-local
 stow --adopt --target=$HOME .
 ```
