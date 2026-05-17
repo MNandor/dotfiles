@@ -61,14 +61,16 @@ noremap Q @@
 let mapleader=' '
 
 " Plugins
-call plug#begin()
+if exists('*plug#begin')
+	call plug#begin()
 
-Plug 'markonm/traces.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'dhruvasagar/vim-table-mode'
-Plug 'tpope/vim-commentary'
+	Plug 'markonm/traces.vim'
+	Plug 'tpope/vim-fugitive'
+	Plug 'dhruvasagar/vim-table-mode'
+	Plug 'tpope/vim-commentary'
 
-call plug#end()
+	call plug#end()
+endif
 " :PlugInstall
 
 
