@@ -128,6 +128,7 @@ function! SetMergeMode()
     highlight DiffDelete gui=none guifg=bg guibg=#ff5f5f
     highlight DiffChange gui=none guifg=bg guibg=#5f5fff
     highlight DiffText   gui=none guifg=bg guibg=#1f1fbf
+	highlight DiffTextAdd cterm=bold ctermfg=10 ctermbg=17 gui=none guifg=#000000 guibg=#5fffaf
     highlight VertSplit  gui=none guifg=#444444 guibg=NONE
 
     " --- PHASE 2: Only apply labels if it's a 4-way Git Merge ---
