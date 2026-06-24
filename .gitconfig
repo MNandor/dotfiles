@@ -16,12 +16,9 @@
 [pager]
     difftool = true
 [merge]
-    tool = meld
+	tool = vimdiff
 [mergetool]
-    prompt = false
-    keepBackup = false
-[mergetool "meld"]
-    useAutoMerge = auto
+	keepBackup = false
 [rerere]
 	enabled = true
 [stash]
