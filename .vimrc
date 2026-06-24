@@ -47,6 +47,13 @@ endfunction
 :vnoremap <S-Tab> <gv
 " To go with ZZ and ZQ shortcuts
 :nnoremap ZS :w<Cr>
+
+
+" when vim is launched from lazygit, this stuff is forgotten
+" vim then complains about ␣ in listchars
+set encoding=utf-8
+scriptencoding=utf-8
+
 " Show whitespace on :set list
 :set listchars+=tab:-->,space:␣,multispace:___-,extends:~
 " Cursor shape. Works in xfce4-terminal
