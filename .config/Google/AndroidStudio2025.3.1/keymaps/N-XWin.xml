@@ -11,10 +11,6 @@
   <action id="ActivateLogcatToolWindow">
     <keyboard-shortcut first-keystroke="ctrl l" />
   </action>
-  <action id="ActivateProjectToolWindow">
-    <keyboard-shortcut first-keystroke="alt 1" />
-    <keyboard-shortcut first-keystroke="ctrl p" />
-  </action>
   <action id="ActivateRunningDevicesToolWindow">
     <keyboard-shortcut first-keystroke="shift ctrl p" />
   </action>
@@ -38,6 +34,7 @@
     <keyboard-shortcut first-keystroke="shift ctrl b" />
   </action>
   <action id="ChangesView.GroupBy.Module" />
+  <action id="ChangesView.ShowCommitOptions" />
   <action id="ChangesView.ToggleCommitUi" />
   <action id="CheckinProject" />
   <action id="CloseContent">
@@ -94,9 +91,7 @@
     <keyboard-shortcut first-keystroke="ctrl alt o" />
     <keyboard-shortcut first-keystroke="shift ctrl q" />
   </action>
-  <action id="ParameterInfo">
-    <keyboard-shortcut first-keystroke="shift ctrl i" />
-  </action>
+  <action id="OverrideMethods" />
   <action id="PreviousTab">
     <keyboard-shortcut first-keystroke="alt left" />
     <keyboard-shortcut first-keystroke="shift ctrl tab" />
@@ -104,7 +99,7 @@
   <action id="QuickImplementations" />
   <action id="QuickJavaDoc">
     <mouse-shortcut keystroke="alt button2" />
-    <keyboard-shortcut first-keystroke="ctrl i" />
+    <keyboard-shortcut first-keystroke="ctrl o" />
   </action>
   <action id="RecentFiles" />
   <action id="RecentFilesFallback" />
