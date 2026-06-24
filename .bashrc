@@ -19,6 +19,8 @@ alias v="vim"
 alias x="xdg-open"
 alias open="xdg-open"
 
+alias td="task add"
+
 
 alias ls='ls --color=auto'
 alias grep='grep --color=auto'
