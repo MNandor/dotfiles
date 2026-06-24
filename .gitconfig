@@ -7,6 +7,14 @@
 	ignore = update-index --assume-unchanged
 	unignore = update-index --no-assume-unchanged
 	stash = stash -u
+[diff]
+    tool = difftastic
+[difftool]
+    prompt = false
+[difftool "difftastic"]
+    cmd = difft "$MERGED" "$LOCAL" "abcdef1" "100644" "$REMOTE" "abcdef2" "100644"
+[pager]
+    difftool = true
 [merge]
 	tool = vimdiff
 [mergetool]
