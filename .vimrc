@@ -152,3 +152,7 @@ endfunction
 
 nnoremap <C-b> :call FindUsages(expand('<cword>'))<CR>
 vnoremap <C-b> "ry:call FindUsages(@r)<CR>
+" Leader Ctrl-B = navigate back (replaces Ctrl-O which is remapped in C++ buffers)
+" If Ctrl-O is not remapped, you're not using a .vimrc that has your LSP setup
+nnoremap <leader><C-B> <C-O>
+
