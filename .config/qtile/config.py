@@ -297,6 +297,7 @@ def autostart():
 	spo(['libinput-gestures']) 
 	spo(['/usr/bin/lxpolkit'])
 	spo([logseq])
+	spo(['dunst'])
 
 
 @hook.subscribe.client_new
