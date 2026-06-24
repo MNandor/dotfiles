@@ -188,3 +188,12 @@ findusages() {
     rg -l "$1" --type kotlin --type java | xargs rg "$2" -C 5                                                              
   }       
 
+alias kitty-green='kitty @ set-colors background="#1b2f1b"'
+alias kitty-blue='kitty @ set-colors background="#1b2438"'
+alias kitty-red='kitty @ set-colors background="#341b1b"'
+alias kitty-purple='kitty @ set-colors background="#2b1b36"'
+alias kitty-pink=kitty-purple
+alias kitty-orange='kitty @ set-colors background="#352715"'
+alias kitty-yellow=kitty-orange
+alias kitty-reset='kitty @ load-config'
+
