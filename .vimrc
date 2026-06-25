@@ -68,7 +68,7 @@ noremap Q @@
 let mapleader=' '
 
 " Plugins
-if exists('*plug#begin')
+if !empty(globpath(&runtimepath, 'autoload/plug.vim'))
 	call plug#begin()
 
 	Plug 'markonm/traces.vim'
